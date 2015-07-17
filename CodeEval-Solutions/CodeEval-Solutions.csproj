@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3C6B082D-E26B-4316-BAF5-250319368725}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CodeEval_Solutions</RootNamespace>
+    <AssemblyName>CodeEval-Solutions</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Easy\File Size\FileSizeV1.cs" />
+    <Compile Include="Moderate\Longest Lines\LongestLinesV1.cs" />
+    <Compile Include="Easy\Lowercase\LowercaseV1.cs" />
+    <Compile Include="Easy\Lowest Unique Number\LowestUniqueNumberV4.cs" />
+    <Compile Include="Easy\Lowest Unique Number\LowestUniqueNumberV3.cs" />
+    <Compile Include="Easy\Lowest Unique Number\LowestUniqueNumberV5.cs" />
+    <Compile Include="Easy\Lowest Unique Number\LowestUniqueNumberV2.cs" />
+    <Compile Include="Easy\Lowest Unique Number\LowestUniqueNumberV1.cs" />
+    <Compile Include="Easy\Multiples Of A Number\MultiplesOfANumberV1.cs" />
+    <Compile Include="Easy\Sum Of Digits\SumOfDigitsV1.cs" />
+    <Compile Include="Easy\Unique Elements\UniqueElementsV2.cs" />
+    <Compile Include="Easy\Unique Elements\UniqueElementsV1.cs" />
+    <Compile Include="Moderate\Reverse And Add\ReverseAndAddV1.cs" />
+    <Compile Include="Moderate\Reverse And Add\ReverseAndAddV2.cs" />
+    <Compile Include="Easy\Calculate Distance\CalculateDistanceV2.cs" />
+    <Compile Include="Easy\Calculate Distance\CalculateDistanceV1.cs" />
+    <Compile Include="Easy\Longest Word\LongestWordV1.cs" />
+    <Compile Include="Moderate\Trailing String\TrailingStringV1.cs" />
+    <Compile Include="Moderate\Pass Triangle\PassTriangleV2.cs" />
+    <Compile Include="Moderate\Pass Triangle\PassTriangleV1.cs" />
+    <Compile Include="Easy\Bit Positions\BitPositionsV1.cs" />
+    <Compile Include="Easy\Capitalize Words\CapitalizeWordsV1.cs" />
+    <Compile Include="Easy\Compressed Sequence\CompressedSequenceV1.cs" />
+    <Compile Include="Easy\Multiplication Tables\MultiplicationTablesV1.cs" />
+    <Compile Include="Easy\Rightmost Char\RightmostCharV1.cs" />
+    <Compile Include="Easy\Sum Of Integers From File\SumOfIntegersFromFileV1.cs" />
+    <Compile Include="Easy\Reverse Word\ReverseWordV1.cs" />
+    <Compile Include="Easy\N Mod M\NModMV1.cs" />
+    <Compile Include="Easy\Even Numbers\EvenNumbersV1.cs" />
+    <Compile Include="Moderate\Mth To Last Element\MthToLastElementV1.cs" />
+    <Compile Include="ICodeEvalChallenge.cs" />
+    <Compile Include="Easy\Multiply Lists\MultiplyListsV1.cs" />
+    <Compile Include="Easy\Odd Numbers\OddNumbersV2.cs" />
+    <Compile Include="Easy\Odd Numbers\OddNumbersV1.cs" />
+    <Compile Include="Easy\Penultimate Word\PenultimateWordV1.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Moderate\Endianness\EndiannessV1.cs" />
+    <Compile Include="Easy\FizzBuzz\FizzBuzzV1.cs" />
+    <Compile Include="Easy\Swap Case\SwapCaseV1.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Hard\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
