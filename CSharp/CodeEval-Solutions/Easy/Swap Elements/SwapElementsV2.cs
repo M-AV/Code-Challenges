@@ -10,7 +10,7 @@ namespace CodeEval_Solutions.Easy.Swap_Elements
     /// Unique:         Yes
     /// Ranking Points: 30.394
     /// </summary>
-    public sealed class SwapElementsV1 : ICodeEvalChallenge
+    public sealed class SwapElementsV2 : ICodeEvalChallenge
     {
         public void Run(string[] args)
         {
@@ -29,8 +29,8 @@ namespace CodeEval_Solutions.Easy.Swap_Elements
                     numbers[positions[0]] = numbers[positions[1]];
                     numbers[positions[1]] = temp;
                 }
-
-                Console.WriteLine(string.Join(" ", numbers));
+                var v = string.Join(" ", numbers);
+                //Console.WriteLine();
             }
         }
     }

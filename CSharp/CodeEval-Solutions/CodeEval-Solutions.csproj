@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Easy\File Size\FileSizeV1.cs" />
+    <Compile Include="Easy\Swap Elements\SwapElementsV2.cs" />
     <Compile Include="Easy\Swap Elements\SwapElementsV1.cs" />
     <Compile Include="Moderate\Longest Lines\LongestLinesV1.cs" />
     <Compile Include="Easy\Lowercase\LowercaseV1.cs" />
