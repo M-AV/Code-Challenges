@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="AdventOfCode\2021\2021-x-template.fs" />
+    <Compile Include="AdventOfCode\2021\2021-2.fs" />
     <Compile Include="AdventOfCode\2021\2021-1.fs" />
     <Content Include="authtoken.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
