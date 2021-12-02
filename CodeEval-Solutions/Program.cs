@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using CodeEval_Solutions.Easy.Swap_Elements;
+using CodeEval_Solutions.Moderate.Data_Recovery;
 
 namespace CodeEval_Solutions
 {
@@ -10,6 +11,10 @@ namespace CodeEval_Solutions
     {
         static void Main(string[] args)
         {
+            new DataRecoveryV1().Run(args);
+            return;
+
+
             var ticksV1  = new List<long>();
             var ticksV2  = new List<long>();
             var ticksV3  = new List<long>();
