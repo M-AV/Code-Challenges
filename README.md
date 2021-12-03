@@ -1,4 +1,6 @@
-# CodeEval
-Occasionally, when I have nothing better to do, I spend some time solving some challenges from CodeEval. This project contains all my solutions.
+# Code Challenges
+Occasionally, when I have nothing better to do, I spend some time solving code challenges. This project contains all my solutions.
 
-Some of these solutions are quite old and some were originally written directly into CodeEval's code editor, so the quality of these solutions might vary.
+Many years ago I did some CodeEval challenges, but the site seems to be gone.
+
+Many of these were done for learning purposes and/or just fun so the quality probably sucks. ¯\_(ツ)_/¯
