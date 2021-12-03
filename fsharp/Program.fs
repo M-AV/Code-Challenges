@@ -8,6 +8,7 @@ let private solvers year day =
     | "2021" -> match day with
                 | "1" -> Some _2021_1.execute
                 | "2" -> Some _2021_2.execute
+                | "3" -> Some _2021_3.execute
                 | _ -> None
     | _      -> None
 
@@ -18,7 +19,7 @@ let printResult result =
 [<EntryPoint>]
 let main argv = 
     let year = if argv.Length > 0 then argv.[0] else "2021"
-    let day = if argv.Length > 1 then argv.[1] else "2"
+    let day = if argv.Length > 1 then argv.[1] else "3"
 
     printfn "Puzzle %s/12-%s" day year
     printfn ""
