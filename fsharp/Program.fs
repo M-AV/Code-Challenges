@@ -9,6 +9,12 @@ let private solvers year day =
                 | "1" -> Some _2021_1.execute
                 | "2" -> Some _2021_2.execute
                 | "3" -> Some _2021_3.execute
+                | "4" -> Some _2021_4.execute
+                | "5" -> Some _2021_5.execute
+                | "6" -> Some _2021_6.execute
+                | "7" -> Some _2021_7.execute
+                | "8" -> Some _2021_8.execute
+                | "9" -> Some _2021_9.execute
                 | _ -> None
     | _      -> None
 
@@ -19,9 +25,9 @@ let printResult result =
 [<EntryPoint>]
 let main argv = 
     let year = if argv.Length > 0 then argv.[0] else "2021"
-    let day = if argv.Length > 1 then argv.[1] else "3"
+    let day = if argv.Length > 1 then argv.[1] else "4"
 
-    printfn "Puzzle %s/12-%s" day year
+    printfn "## Puzzle %s/12-%s" day year
     printfn ""
 
     let solver = solvers year day

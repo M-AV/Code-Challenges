@@ -7,7 +7,13 @@
 
   <ItemGroup>
     <Compile Include="AdventOfCode\2021\2021-3.fs" />
-    <Compile Include="AdventOfCode\2021\2021-x-template.fs" />
+    <Compile Include="AdventOfCode\2021\2021-4.fs" />
+    <Compile Include="AdventOfCode\2021\2021-9.fs" />
+    <Compile Include="AdventOfCode\2021\2021-8.fs" />
+    <Compile Include="AdventOfCode\2021\2021-7.fs" />
+    <Compile Include="AdventOfCode\2021\2021-6.fs" />
+    <Compile Include="AdventOfCode\2021\2021-5.fs" />
+    <Compile Include="AdventOfCode\2021\2021-x.fs" />
     <Compile Include="AdventOfCode\2021\2021-2.fs" />
     <Compile Include="AdventOfCode\2021\2021-1.fs" />
     <Content Include="authtoken.txt">
