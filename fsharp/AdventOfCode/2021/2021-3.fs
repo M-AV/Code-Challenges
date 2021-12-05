@@ -5,10 +5,6 @@ open System
 // Task 1: Merge bits by most common bit in a given position and calculate resulting int value and negated value (you don't have 32 bits)
 // Task 2: 
 
-let tap data = 
-  let materialized = List.ofSeq data
-  materialized
-
 // Go through each bit and left shift the appropriate amount to get an integer
 let bitsToInt bits length =
     let (x, _, _) =
