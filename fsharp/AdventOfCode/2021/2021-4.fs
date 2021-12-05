@@ -35,7 +35,7 @@ let neededNumbersForRow (numbers : int seq) (row : int seq) =
     let result = findRequired numbers (row |> List.ofSeq) 0
     result
 
-let neededNumbersForBoard (numbers : int seq) (board : (int) seq seq) =
+let minNeededNumbersForBoard (numbers : int seq) (board : (int) seq seq) =
     let rec red rows (required: int) =
         match rows with 
         | [] -> required
@@ -46,8 +46,19 @@ let neededNumbersForBoard (numbers : int seq) (board : (int) seq seq) =
     let result = min horizontalResult verticalResult
     result
 
+
 let sumUnmarkedNumbers usedNumbers board =
     board |> Seq.collect (fun x -> x) |> Seq.except usedNumbers |> Seq.sum<int>
+
+let findLastRequiredAndSumOfUnused numbers boards comparer =
+    let board = 
+        boards |> 
+        Seq.map (fun board -> (minNeededNumbersForBoard numbers board, board)) |> 
+        comparer fst
+    
+    let lastRequiredNumber = (numbers |> List.ofSeq)[(fst board) - 1]
+    let sumOfUnused = (sumUnmarkedNumbers (numbers |> Seq.take (fst board)) (snd board))
+    (lastRequiredNumber, sumOfUnused)
 
 let execute (input : string seq) =
     printfn "Input count: %i" (Seq.length input)
@@ -55,13 +66,9 @@ let execute (input : string seq) =
     let numbers = (Seq.head input).Split(',') |> Seq.map (fun x -> int x)
     let boards = input |> Seq.tail |> parseBoards
 
-    let fastestBoard = 
-        boards |> 
-        Seq.map (fun board -> (neededNumbersForBoard numbers board, board)) |> 
-        Seq.minBy fst
-    
-    let lastRequiredNumber = (numbers |> List.ofSeq)[(fst fastestBoard) - 1]
-    let sumOfUnused = (sumUnmarkedNumbers (numbers |> Seq.take (fst fastestBoard)) (snd fastestBoard))
+    // This is a quite slow calculation.. So i'm sure it can be done in a better way
+
+    let (lastRequiredNumber, sumOfUnused) = findLastRequiredAndSumOfUnused numbers boards Seq.minBy
 
     //printfn "Sum %A" sumOfUnused
     //printfn "Board: %A" (snd fastestBoard)
@@ -69,6 +76,8 @@ let execute (input : string seq) =
 
     let part1 = sumOfUnused * lastRequiredNumber
 
-    let part2 = "N/A"
+    let (lastRequiredNumber, sumOfUnused) = findLastRequiredAndSumOfUnused numbers boards Seq.maxBy
+
+    let part2 = sumOfUnused * lastRequiredNumber
 
     part1.ToString(), part2.ToString()
