@@ -3,7 +3,7 @@
 open System
 
 // Task 1: Bingo. Find winning board. Add all numbers not called and multiply with the latest number called.
-// Task 2: 
+// Task 2: Find loosing board and do the same
 
 let parseBoards lines =
     let parseLine (line:string) = 

@@ -1,5 +1,6 @@
 ﻿using CodeEval_Solutions.Easy.Swap_Elements;
 using CodeEval_Solutions.Moderate.Data_Recovery;
+using csharp.AdventOfCode._2021;
 using System.Diagnostics;
 
 static void PrepareGC()
@@ -9,7 +10,10 @@ static void PrepareGC()
     GC.Collect();
 }
 
-new DataRecoveryV1().Run(args);
+string input = "";// Console.ReadLine();
+
+await Day5.Execute(input);
+
 return;
 
 

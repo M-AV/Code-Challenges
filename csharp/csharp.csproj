@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <Folder Include="CodeEval\Hard\" />
-    <Folder Include="AdventOfCode\" />
   </ItemGroup>
 
 </Project>
