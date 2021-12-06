@@ -4,7 +4,7 @@ open System
 open System.Linq
 open System.Diagnostics
 
-// Task 1: Find number of points were a horizontal/ vertical line overlaps
+// Task 1: Find number of points were a horizontal/vertical line overlaps
 // Task 2: 
 type Point = 
     struct 
@@ -43,10 +43,12 @@ let maxByX (line:Point[]) = Array.minBy (fun (x:Point) -> x.X)
 let minByY (line:Point[]) = Array.minBy (fun (x:Point) -> x.Y)
 let maxByY (line:Point[]) = Array.minBy (fun (x:Point) -> x.Y)
 
-// I originally wanted to do a recursive function that checked every line against every other line
-// which was super inefficient. It didn't give me the correct result, so instead of debugging it 
-// I tried my luck with a Map and a single iteration of each point of each line... It works.. But 
-// this is also super inefficient, even though I would have assumed otherwise.. Hmm.
+// 1. I originally wanted to do a recursive function that checked every line against every other line
+//    which was super inefficient. It didn't give me the correct result, so instead of debugging it 
+//    I tried my luck with a Map and a single iteration of each point of each line... It works.. But 
+//    this is also super inefficient, even though I would have assumed otherwise.. Hmm.
+
+// 2. Found out why it's super slow. See comment over `addPoints`
 
 let addLineToMap (line:Point[], map:Map<Point, int>) =
     let increment x = 
@@ -54,10 +56,15 @@ let addLineToMap (line:Point[], map:Map<Point, int>) =
         | Some x -> Some(x + 1)
         | None -> Some(1)
     
+    // Original implementation used Seq instead of Lists. Turns out Seq is not that good for recursive
+    // functions like this, since you will likely have to evaluate the entire sequence every time (and 
+    // not just parse an continuous iterator as I naively assumed it would)
+    // Changing this function to use lists let me solve Part 1 in ~0.5 seconds (compared to the ~1.5 
+    // minutes before)
     let rec addPoints (points, map:Map<Point, int>) =
         match points with 
-        | x when Seq.isEmpty x -> map
-        | _ -> addPoints ((Seq.tail points), (map.Change((Seq.head points), increment)))
+        | [] -> map
+        | _ -> addPoints ((List.tail points), (map.Change((List.head points), increment)))
 
     let generatePoints line =
         match line with 
@@ -82,9 +89,10 @@ let solvePart1WithMap (lines:Point[] seq) =
 
     positionCount.Values |> Seq.filter (fun x -> x > 1) |> Seq.length
 
-// In my pursuit of knowledge I found this solution https://github.com/jovaneyck/advent-of-code-2021/blob/main/day%2005/part1.fsx
+// I was a bit stuck trying to figure out why my solution was so slow, so I looked up other solutions and found this: 
+// github.com/jovaneyck/advent-of-code-2021/blob/main/day%2005/part1.fsx
 // which is using lots of stuff I have no idea how works.. 
-// The below solution is that one which has the performance I would expect.
+// The below solution is that one and has the performance I would expect.
 
 let solvePart1WithCountBy (lines:(Point * Point) seq) =
     let generatePoints (first:Point, second:Point) =
