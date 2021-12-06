@@ -61,13 +61,10 @@ let addLineToMap (line:Point[], map:Map<Point, int>) =
 
     let generatePoints line =
         match line with 
-        | x when isHorizontal x -> 
-            Enumerable.Range(minX line, (maxX line - minX line + 1)) |> 
-            Seq.map (fun x -> new Point(line[0].Y, x))
-        | x when isVertical x -> 
-            Enumerable.Range(minY line, (maxY line - minY line + 1)) |> 
-            Seq.map (fun y -> new Point(y,line[0].X))
-        | _ -> Seq.empty
+        | x when isHorizontal x || isVertical x -> 
+            [ for x in (minX line) .. (maxX line) do 
+                for y in (minY line) .. (maxY line) -> new Point(x,y)]
+        | _ -> List.empty
 
     let result = addPoints ((generatePoints line), map)
 
