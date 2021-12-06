@@ -1,11 +1,9 @@
 ﻿module _2021_5
 
 open System
-open System.Linq
-open System.Diagnostics
 
 // Task 1: Find number of points were a horizontal/vertical line overlaps
-// Task 2: 
+// Task 2: Include diagonal lines in calc
 type Point = 
     struct 
         val X: int
@@ -31,17 +29,19 @@ let parseLine2 (line: string) =
                                             Seq.head)
     (x, y)
 
-let isHorizontal (line:Point[]) = line[0].Y = line[1].Y
-let isVertical (line:Point[]) = line[0].X = line[1].X
 let minX (line:Point[]) = min line[0].X line[1].X
 let minY (line:Point[]) = min line[0].Y line[1].Y
 let maxX (line:Point[]) = max line[0].X line[1].X
 let maxY (line:Point[]) = max line[0].Y line[1].Y
 
-let minByX (line:Point[]) = Array.minBy (fun (x:Point) -> x.X)
-let maxByX (line:Point[]) = Array.minBy (fun (x:Point) -> x.X)
-let minByY (line:Point[]) = Array.minBy (fun (x:Point) -> x.Y)
-let maxByY (line:Point[]) = Array.minBy (fun (x:Point) -> x.Y)
+let minByX (line:Point[]): Point = line |> Array.minBy (fun (x:Point) -> x.X)
+let maxByX (line:Point[]): Point = line |> Array.maxBy (fun (x:Point) -> x.X)
+let minByY (line:Point[]): Point = line |> Array.minBy (fun (x:Point) -> x.Y)
+let maxByY (line:Point[]): Point = line |> Array.maxBy (fun x -> x.Y)
+
+let isHorizontal (line:Point[]) = line[0].Y = line[1].Y
+let isVertical (line:Point[]) = line[0].X = line[1].X
+
 
 // 1. I originally wanted to do a recursive function that checked every line against every other line
 //    which was super inefficient. It didn't give me the correct result, so instead of debugging it 
@@ -67,11 +67,20 @@ let addLineToMap (line:Point[], map:Map<Point, int>) =
         | _ -> addPoints ((List.tail points), (map.Change((List.head points), increment)))
 
     let generatePoints line =
+        let generateDiagonal line = 
+            let start:Point = minByX line
+            let stop:Point = maxByX line
+        
+            if start.Y < stop.Y then
+                [ for i in 0 .. (stop.X - start.X) -> new Point(start.X + i, start.Y + i) ]
+            else 
+                [ for i in 0 .. (stop.X - start.X) -> new Point(start.X + i, start.Y - i) ]
+
         match line with 
         | x when isHorizontal x || isVertical x -> 
             [ for x in (minX line) .. (maxX line) do 
                 for y in (minY line) .. (maxY line) -> new Point(x,y)]
-        | _ -> List.empty
+        | _ -> generateDiagonal line
 
     let result = addPoints ((generatePoints line), map)
 
@@ -84,8 +93,6 @@ let solvePart1WithMap (lines:Point[] seq) =
         | _ -> addLinesToMap ((Seq.tail lines), (addLineToMap ((Seq.head lines), map)))
 
     let positionCount = addLinesToMap (lines, (Map []))
-
-    printfn "Counting.."
 
     positionCount.Values |> Seq.filter (fun x -> x > 1) |> Seq.length
 
@@ -128,7 +135,7 @@ let execute (input : string seq) =
     //let overlapCount = solvePart1WithCountBy part1Lines
 
     let part1 = overlapCount
-
-    let part2 = "N/A"
+    
+    let part2 = solvePart1WithMap parsed
 
     part1.ToString(), part2.ToString()
