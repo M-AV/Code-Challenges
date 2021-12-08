@@ -24,14 +24,11 @@ let parseInput (input : string seq) =
 // 8 = 7 letters
 // 9 = Find all 6 letter words, subtract 4, if 2 left it must be 9
 let solveSingleDisplay (input : string[] * string[]) =
-    let sortedPatterns = 
-        (fst input) 
-        |> Array.map (fun x -> (x |> Seq.toList))
-    
     // We use the length as key. It might be more intuitive to have used the actual value, but it 
     // doesn't really matter
     let letterMap = 
-        sortedPatterns 
+        (fst input) 
+        |> Array.map (fun x -> x |> Seq.toList) 
         |> Array.filter (fun x -> Array.contains x.Length [|2; 4; 3; 7|])
         |> Array.map (fun x -> (x.Length, x))
         |> Map.ofArray
