@@ -15,6 +15,22 @@ let private solvers year day =
                 | "7" -> Some _2021_7.execute
                 | "8" -> Some _2021_8.execute
                 | "9" -> Some _2021_9.execute
+                | "10" -> Some _2021_10.execute
+                | "11" -> Some _2021_11.execute
+                | "12" -> Some _2021_12.execute
+                | "13" -> Some _2021_13.execute
+                | "14" -> Some _2021_14.execute
+                | "15" -> Some _2021_15.execute
+                | "16" -> Some _2021_16.execute
+                | "17" -> Some _2021_17.execute
+                | "18" -> Some _2021_18.execute
+                | "19" -> Some _2021_19.execute
+                | "20" -> Some _2021_20.execute
+                | "21" -> Some _2021_21.execute
+                | "22" -> Some _2021_22.execute
+                | "23" -> Some _2021_23.execute
+                | "24" -> Some _2021_24.execute
+                | "25" -> Some _2021_25.execute
                 | _ -> None
     | _      -> None
 

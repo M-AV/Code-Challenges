@@ -6,6 +6,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="AdventOfCode\2021\2021-13.fs" />
+    <Compile Include="AdventOfCode\2021\2021-14.fs" />
+    <Compile Include="AdventOfCode\2021\2021-15.fs" />
+    <Compile Include="AdventOfCode\2021\2021-16.fs" />
+    <Compile Include="AdventOfCode\2021\2021-17.fs" />
+    <Compile Include="AdventOfCode\2021\2021-18.fs" />
+    <Compile Include="AdventOfCode\2021\2021-19.fs" />
+    <Compile Include="AdventOfCode\2021\2021-20.fs" />
+    <Compile Include="AdventOfCode\2021\2021-21.fs" />
+    <Compile Include="AdventOfCode\2021\2021-22.fs" />
+    <Compile Include="AdventOfCode\2021\2021-23.fs" />
+    <Compile Include="AdventOfCode\2021\2021-24.fs" />
+    <Compile Include="AdventOfCode\2021\2021-25.fs" />
     <Compile Include="AdventOfCode\2021\2021-3.fs" />
     <Compile Include="AdventOfCode\2021\2021-4.fs" />
     <Compile Include="AdventOfCode\2021\2021-9.fs" />
@@ -13,6 +26,9 @@
     <Compile Include="AdventOfCode\2021\2021-7.fs" />
     <Compile Include="AdventOfCode\2021\2021-6.fs" />
     <Compile Include="AdventOfCode\2021\2021-5.fs" />
+    <Compile Include="AdventOfCode\2021\2021-10.fs" />
+    <Compile Include="AdventOfCode\2021\2021-11.fs" />
+    <Compile Include="AdventOfCode\2021\2021-12.fs" />
     <Compile Include="AdventOfCode\2021\2021-x.fs" />
     <Compile Include="AdventOfCode\2021\2021-2.fs" />
     <Compile Include="AdventOfCode\2021\2021-1.fs" />

@@ -1,7 +1,7 @@
 ﻿module _2021_9
 
 // Task 1: Find low points in a number grid
-// Task 2: 
+// Task 2: Find size of 3 biggest 'basins' and multiply them
 
 let parseInput (input: string seq) =
     let lineLength = (Seq.head input).Length
@@ -13,12 +13,6 @@ let parseInput (input: string seq) =
         |> Array.ofSeq
 
     (parsedLines, lineLength)
-
-
-let aboveIdx (index:int, lineLength:int) = index - lineLength
-let nextIdx index = index + 1
-let belowIdx index lineLength = index + lineLength
-let prevIdx index lineLength = index - 1
 
 let valAbove (input:int array, index:int, lineLength:int) = 
     if index - lineLength < 0 then (-1, 99999999)
