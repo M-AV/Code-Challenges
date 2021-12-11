@@ -1,7 +1,7 @@
 ﻿module _2021_10
 
 // Task 1: Ignore incomplete lines, find first invalid paranthesis and calculate score. Sum scores for result
-// Task 2: 
+// Task 2: Ignore corrupt lines, find missing brackets and calc score. Find middle score.
 
 let openBrackets = [| '['; '('; '<'; '{' |]
 let closeBrackets = [| ']'; ')'; '>'; '}' |]
