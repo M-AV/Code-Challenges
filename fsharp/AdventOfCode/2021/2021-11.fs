@@ -58,7 +58,7 @@ let simulateFlashes count (input:int[][]) =
 
     let flashCounts = 
         [| for i in 0 .. input.Length - 1 ->
-            [| for _ in 1 .. input[i].Length -> 0|] 
+            [| for _ in 1 .. input[i].Length -> 0 |] 
         |]
     
     let resetIfFlashed() =
@@ -75,20 +75,25 @@ let simulateFlashes count (input:int[][]) =
         resetIfFlashed()
 
 
-    printfn "%A" flashCounts
+    //printfn "%A" input
     flashCounts |> Seq.collect id |> Seq.sum
 
 let execute (input : string seq) =
     printfn "Input count: %i" (Seq.length input)
 
     let parsed = parseInput input
-    //printfn "%A" parsed
-
-    //simulateFlashes 10 parsed
-    //printfn "%A" parsed
-
     let part1 = simulateFlashes 100 parsed
 
-    let part2 = "N/A"
+
+    let newParsed = parseInput input // We're mutating the input above. So the easiest way to 'reset' is just to parse it again
+    let mutable flashCount = 0
+    let mutable iterations = 0
+    while flashCount <> 100 do
+        flashCount <- simulateFlashes 1 newParsed
+        iterations <- iterations + 1
+
+
+
+    let part2 = iterations
 
     part1.ToString(), part2.ToString()
