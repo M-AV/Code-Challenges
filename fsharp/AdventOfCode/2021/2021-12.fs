@@ -3,17 +3,15 @@
 open Xunit
 open System
 open System.Linq
-open System.Collections.Generic
 
 // Task 1: Find number of unique paths from start to end (we can visit big letters more than once)
-// Task 2: 
+// Task 2: Find number of paths if we can visit a single small cave twice 
 
 type Cave =
     | Small of string
     | Large of string
 
 type Edge = Cave * Cave
-
 
 let parseInput (input : string seq) =
     input 
@@ -29,39 +27,64 @@ let parseInput (input : string seq) =
     |> Seq.map (fun (src, dest) -> (src, dest |> Seq.map (fun (_, dest) -> dest) |> List.ofSeq))
     |> Map.ofSeq
 
-let findAllPaths (input:Map<Cave, Cave list>) =
-    let rec bfs (current:Cave) (visited:Set<Cave>) =
+// The optional Cave indicates if we have to visit that one twice in the solution
+let findAllPaths (input:Map<Cave, Cave list>) (visitTwice:Cave option) =
+    let rec dfs (current:Cave) (visited:Set<Cave>) (bonusVisit:Cave option) (path:Cave list)=
         if visited.Contains current then 0
         else
-            match current with
-            | Small(name) when name = "end" -> 1
-            | Small(name) -> 
+            match current, bonusVisit with
+            | Small(name), None when name = "end" -> 
+                match visitTwice with 
+                | Some(x) when visited.Contains(x) -> 1 // Make sure we have visited it twice if we have to
+                | Some(x) -> 0
+                | _ -> 1
+            | Small(name), Some cave when name = "end" -> 0
+            | Small(name), Some cave when cave = current ->
+                match input[current] with
+                | [] -> 0
+                | paths ->
+                    paths 
+                    |> List.map (fun cave -> dfs cave visited None (current :: path)) |> List.sum
+            | Small(name), x -> 
                 match input[current] with
                 | [] -> 0
                 | paths -> 
                     paths 
-                    |> List.map (fun cave -> bfs cave (visited.Add current)) |> List.sum
-            | Large(name) -> 
+                    |> List.map (fun cave -> dfs cave (visited.Add current) x (current :: path)) |> List.sum
+            | Large(name), x -> 
                 match input[current] with
                 | [] -> 0
                 | paths ->
-                    paths |> List.map (fun cave -> bfs cave visited) |> List.sum
+                    paths |> List.map (fun cave -> dfs cave visited x (current :: path)) |> List.sum
 
     
-    bfs (Small("start")) Set.empty
+    dfs (Small("start")) Set.empty visitTwice []
+
+let findAllPaths_Part2 (input:Map<Cave, Cave list>) =
+    let isSmall cave =
+        match cave with
+        | Small(_) -> true
+        | Large(_) -> false
+    let smallCaves = 
+        input.Keys 
+        |> Seq.filter isSmall
+        |> Seq.filter (fun x -> x <> Small("start") && x <> Small("end"))
+
+    let numberOfDoubleVisitPaths = 
+        smallCaves 
+        |> Seq.map (fun x -> findAllPaths input (Some(x)))
+        |> Seq.sum
+    numberOfDoubleVisitPaths + (findAllPaths input None)
 
 let execute (input : string seq) =
     printfn "Input count: %i" (Seq.length input)
 
     let parsed = parseInput input
-    printfn "%A" parsed
+    //printfn "%A" parsed
 
-    let x = findAllPaths parsed
-    printfn "%A" x
+    let part1 = findAllPaths parsed None
 
-    let part1 = x
-
-    let part2 = "N/A"
+    let part2 = findAllPaths_Part2 parsed
 
     part1.ToString(), part2.ToString()
 
@@ -78,6 +101,7 @@ let ``Example 1``() =
           "b-end" ]
     let (part1, part2) = execute input
     Assert.Equal("10", part1)
+    Assert.Equal("36", part2)
 [<Fact>]
 let ``Example 2``() =
     let input = 
@@ -91,8 +115,9 @@ let ``Example 2``() =
           "kj-sa";
           "kj-HN";
           "kj-dc" ]
-    let (part1, _) = execute input
+    let (part1, part2) = execute input
     Assert.Equal("19", part1)
+    Assert.Equal("103", part2)
 
 [<Fact>]
 let ``Example 3``() =
@@ -115,5 +140,6 @@ let ``Example 3``() =
         "zg-he";
         "pj-fs";
         "start-RW" ]
-    let (part1, _) = execute input
+    let (part1, part2) = execute input
     Assert.Equal("226", part1)
+    Assert.Equal("3509", part2)
