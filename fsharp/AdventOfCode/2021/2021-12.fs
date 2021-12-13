@@ -2,7 +2,6 @@
 
 open Xunit
 open System
-open System.Linq
 
 // Task 1: Find number of unique paths from start to end (we can visit big letters more than once)
 // Task 2: Find number of paths if we can visit a single small cave twice 
@@ -19,8 +18,8 @@ let parseInput (input : string seq) =
     |> Seq.map (fun x -> (x[0], x[1]))
     |> Seq.map (
         fun (first, second) -> 
-        let fst = if first.Any(fun x -> Char.IsUpper x) then Large(first) else Small(first)
-        let snd = if second.Any(fun x -> Char.IsUpper x) then Large(second) else Small(second)
+        let fst = if first.[0] |> Char.IsUpper then Large(first) else Small(first)
+        let snd = if second.[0] |> Char.IsUpper then Large(second) else Small(second)
         [ Edge(fst, snd); Edge(snd, fst) ])
     |> Seq.collect id
     |> Seq.groupBy (fun (src, _) -> src)
@@ -29,7 +28,7 @@ let parseInput (input : string seq) =
 
 // The optional Cave indicates if we have to visit that one twice in the solution
 let findAllPaths (input:Map<Cave, Cave list>) (visitTwice:Cave option) =
-    let rec dfs (current:Cave) (visited:Set<Cave>) (bonusVisit:Cave option) (path:Cave list)=
+    let rec dfs (current:Cave) (visited:Set<Cave>) (bonusVisit:Cave option) (path:Cave list) = // We're not using the path, but it was helpful for debugging purposes
         if visited.Contains current then 0
         else
             match current, bonusVisit with
@@ -60,6 +59,7 @@ let findAllPaths (input:Map<Cave, Cave list>) (visitTwice:Cave option) =
     
     dfs (Small("start")) Set.empty visitTwice []
 
+// Here we just bruteforce every single node. It should be possible to make a solution that does only 1 search
 let findAllPaths_Part2 (input:Map<Cave, Cave list>) =
     let isSmall cave =
         match cave with
