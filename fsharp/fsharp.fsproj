@@ -19,19 +19,19 @@
     <Compile Include="AdventOfCode\2021\2021-23.fs" />
     <Compile Include="AdventOfCode\2021\2021-24.fs" />
     <Compile Include="AdventOfCode\2021\2021-25.fs" />
-    <Compile Include="AdventOfCode\2021\2021-3.fs" />
-    <Compile Include="AdventOfCode\2021\2021-4.fs" />
-    <Compile Include="AdventOfCode\2021\2021-9.fs" />
-    <Compile Include="AdventOfCode\2021\2021-8.fs" />
-    <Compile Include="AdventOfCode\2021\2021-7.fs" />
-    <Compile Include="AdventOfCode\2021\2021-6.fs" />
-    <Compile Include="AdventOfCode\2021\2021-5.fs" />
+    <Compile Include="AdventOfCode\2021\2021-03.fs" />
+    <Compile Include="AdventOfCode\2021\2021-04.fs" />
+    <Compile Include="AdventOfCode\2021\2021-09.fs" />
+    <Compile Include="AdventOfCode\2021\2021-08.fs" />
+    <Compile Include="AdventOfCode\2021\2021-07.fs" />
+    <Compile Include="AdventOfCode\2021\2021-06.fs" />
+    <Compile Include="AdventOfCode\2021\2021-05.fs" />
     <Compile Include="AdventOfCode\2021\2021-10.fs" />
     <Compile Include="AdventOfCode\2021\2021-11.fs" />
     <Compile Include="AdventOfCode\2021\2021-12.fs" />
     <Compile Include="AdventOfCode\2021\2021-x.fs" />
-    <Compile Include="AdventOfCode\2021\2021-2.fs" />
-    <Compile Include="AdventOfCode\2021\2021-1.fs" />
+    <Compile Include="AdventOfCode\2021\2021-02.fs" />
+    <Compile Include="AdventOfCode\2021\2021-01.fs" />
     <Content Include="authtoken.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
