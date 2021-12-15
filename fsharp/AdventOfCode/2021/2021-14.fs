@@ -4,7 +4,7 @@ open Xunit
 open System.Collections.Generic
 
 // Task 1: Insert letters based on map for 10 iterations
-// Task 2: 
+// Task 2: Same Same, but 40
 
 let parseInput (input: string seq) =
     let code = input |> Seq.head |> List.ofSeq
