@@ -9,7 +9,7 @@ open System
 type Version = int
 type TypeId = int
 type Packet =
-    | Literal of Version * TypeId * int 
+    | Literal of Version * TypeId * int64 
     | Operator of Version * TypeId * (Packet list)
 
 let parseInput input =
@@ -76,6 +76,12 @@ let convertBitsToInt (bits:int list) =
         res <- res <<< 1
         res <- res ||| i
     res
+let convertBitsToInt64 (bits:int list) =
+    let mutable res = 0L
+    for i in bits do
+        res <- res <<< 1
+        res <- res ||| i
+    res
 
 let rec parsePackets code : Packet list * int list =
     let rec parseType4Packet version typeId (code:int list) : Packet * int list =
@@ -87,7 +93,7 @@ let rec parsePackets code : Packet list * int list =
                 let literal = tail |> List.take 4
                 findBits (result@literal) (tail |> List.skip 4)
         let (value, rem) = code |> findBits []
-        (Literal(version, typeId, convertBitsToInt value), rem)
+        (Literal(version, typeId, convertBitsToInt64 value), rem)
     
     and parseOperatorPacket version typeId (code:int list) : Packet * int list = 
         match code with
@@ -143,6 +149,23 @@ let rec sumVersionNumbers packets =
         sum <- sumVersions packet + sum
     sum
 
+let evaluatePackets packets : int64=
+    let packet = packets |> List.head // From the task it says "value of the outermost packet", so I assume there is only 1
+    let rec evaluate packet =
+        match packet with 
+        | Literal (version, typ, value) -> int64 value
+        | Operator (version, typ, subs) ->
+            let results = subs |> List.map evaluate
+            match typ with
+            | 0 -> results |> Seq.sum
+            | 1 -> results |> Seq.fold (fun agg curr -> agg * curr) 1L
+            | 2 -> results |> Seq.min
+            | 3 -> results |> Seq.max
+            | 5 -> if results.Head > results.Tail.Head then 1 else 0L
+            | 6 -> if results.Head < results.Tail.Head then 1 else 0L
+            | 7 -> if results.Head = results.Tail.Head then 1 else 0L
+    evaluate packet
+
 let execute (input : string seq) =
     printfn "Input count: %i" (Seq.length input)
 
@@ -154,7 +177,7 @@ let execute (input : string seq) =
 
     let part1 = sumVersionNumbers packets
 
-    let part2 = "N/A"
+    let part2 = evaluatePackets packets
 
     part1.ToString(), part2.ToString()
 
@@ -208,3 +231,52 @@ let ``Operator Packet - Example 2``() =
         isLiteral (sub |> List.skip 1 |> List.head) "2" |> ignore
         isLiteral (sub |> List.skip 2 |> List.head) "3" |> ignore
     | _ -> Assert.False(true)
+
+[<Fact>]
+let ``Part 2 - Example 1``() =
+    let input = [ "C200B40A82" ]
+    let (_, part2) = execute input
+
+    Assert.Equal("3", part2)
+[<Fact>]
+let ``Part 2 - Example 2``() =
+    let input = [ "04005AC33890" ]
+    let (_, part2) = execute input
+
+    Assert.Equal("54", part2)
+[<Fact>]
+let ``Part 2 - Example 3``() =
+    let input = [ "880086C3E88112" ]
+    let (_, part2) = execute input
+
+    Assert.Equal("7", part2)
+[<Fact>]
+let ``Part 2 - Example 4``() =
+    let input = [ "CE00C43D881120" ]
+    let (_, part2) = execute input
+
+    Assert.Equal("9", part2)
+[<Fact>]
+let ``Part 2 - Example 5``() =
+    let input = [ "D8005AC2A8F0" ]
+    let (_, part2) = execute input
+
+    Assert.Equal("1", part2)
+[<Fact>]
+let ``Part 2 - Example 6``() =
+    let input = [ "F600BC2D8F" ]
+    let (_, part2) = execute input
+
+    Assert.Equal("0", part2)
+[<Fact>]
+let ``Part 2 - Example 7``() =
+    let input = [ "9C005AC2F8F0" ]
+    let (_, part2) = execute input
+
+    Assert.Equal("0", part2)
+[<Fact>]
+let ``Part 2 - Example 8``() =
+    let input = [ "9C0141080250320F1802104A08" ]
+    let (_, part2) = execute input
+
+    Assert.Equal("1", part2)
