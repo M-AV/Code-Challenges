@@ -176,7 +176,6 @@ let execute (input : string seq) =
     //printfn "%A" packets
 
     let part1 = sumVersionNumbers packets
-
     let part2 = evaluatePackets packets
 
     part1.ToString(), part2.ToString()
