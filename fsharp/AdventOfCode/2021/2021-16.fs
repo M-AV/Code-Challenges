@@ -4,7 +4,7 @@ open Xunit
 open System
 
 // Task 1: Sum versions of all packets
-// Task 2: 
+// Task 2: Evaluate packets and find result
 
 type Version = int
 type TypeId = int
