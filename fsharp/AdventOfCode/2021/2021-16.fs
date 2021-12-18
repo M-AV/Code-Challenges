@@ -161,9 +161,9 @@ let evaluatePackets packets : int64=
             | 1 -> results |> Seq.fold (fun agg curr -> agg * curr) 1L
             | 2 -> results |> Seq.min
             | 3 -> results |> Seq.max
-            | 5 -> if results.Head > results.Tail.Head then 1 else 0L
-            | 6 -> if results.Head < results.Tail.Head then 1 else 0L
-            | 7 -> if results.Head = results.Tail.Head then 1 else 0L
+            | 5 -> if results.[0] > results.[1] then 1 else 0L
+            | 6 -> if results.[0] < results.[1] then 1 else 0L
+            | 7 -> if results.[0] = results.[1] then 1 else 0L
     evaluate packet
 
 let execute (input : string seq) =
