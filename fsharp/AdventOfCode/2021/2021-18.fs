@@ -4,12 +4,14 @@ open System
 open Xunit
 
 // Task 1: Help the fish with additions
-// Task 2: 
+// Task 2: Find combination of numbers that gives us highest magnitude
 
+// Initially I used a int*int as the key into the map, but it didn't work and somewhat complicated 
+// so now we just use Guid
 type Pair = 
     | Literal of int
-    | Pair of (int * int) * (int * int)
-type Tree = (int * int) * Map<int*int, Pair>
+    | Pair of Guid * Guid
+type Tree = Guid * Map<Guid, Pair>
 
 let charToInt (c:char) = (int c) - (int '0')
 
@@ -33,35 +35,34 @@ let rec print (tree:Tree) : string =
 // That way the key is unique across all trees.
 // We then return the map along with the key for the root Pair.
 let parseInput (input:string seq) : Tree seq =
-    let rec parsePair lineIdx idx (map:Map<int * int, Pair>) line : (int*int) * int * Map<int*int, Pair> =
+    let rec parsePair (map:Map<Guid, Pair>) line : Guid * int * Map<Guid, Pair> =
         match line with
         | '['::tail ->
-            let (leftIdx, count, map) = parsePair lineIdx idx map tail
-            let (rightIdx, count2, map) = parsePair lineIdx ((snd leftIdx) + 1) map (tail |> List.skip (count + 1))
+            let (leftIdx, count, map) = parsePair map tail
+            let (rightIdx, count2, map) = parsePair map (tail |> List.skip (count + 1))
             let usedChars = count + count2 + 3
-            let myIdx = (snd rightIdx) + 1
-            let updatedMap = map |> Map.add (lineIdx, myIdx) (Pair(leftIdx, rightIdx))
+            let myIdx = Guid.NewGuid()
+            let updatedMap = map |> Map.add myIdx (Pair(leftIdx, rightIdx))
 
-            ((lineIdx, myIdx), usedChars, updatedMap)
+            myIdx, usedChars, updatedMap
         | x::tail when Char.IsDigit x -> 
             let leaf = Literal(charToInt x)
-            let updatedMap = map |> Map.add (lineIdx, idx) leaf
-            ((lineIdx, idx), 1, updatedMap)
+            let idx = Guid.NewGuid()
+            let updatedMap = map |> Map.add idx leaf
+            (idx, 1, updatedMap)
 
     let x = 
         input 
         |> Seq.map List.ofSeq
-        |> Seq.indexed
-        |> Seq.map (fun (idx, x) -> parsePair idx 0 Map.empty x)
+        |> Seq.map (fun x -> parsePair Map.empty x)
         |> Seq.map (fun (rootIdx, _, map) -> (rootIdx, map))
     x
 
-let getLiteralValue key (map:Map<int*int, Pair>) = match map[key] with | Literal x -> x
+let getLiteralValue key (map:Map<Guid, Pair>) = match map[key] with | Literal x -> x
 
 let fishAdd (left:Tree) (right:Tree) =
     let mergedMaps = Map.fold (fun acc key value -> Map.add key value acc) (snd left) (snd right)
-    // By keeping the line number from the left tree and adding 1, we should maintain a unique index
-    let newRootKey = (fst (fst left), (snd (fst left)) + 1)
+    let newRootKey = Guid.NewGuid()
     let updatedMap = Map.add newRootKey (Pair(fst left, fst right)) mergedMaps
     //printfn "A: %A" (print (newRootKey, updatedMap))
     (newRootKey, updatedMap)
@@ -77,9 +78,9 @@ let explode (tree:Tree) =
     // 
     // It started out farly simple and then it... turned into this. ¯\_(ツ)_/¯
     // I'm sure it could be cleaned up.. But whatevs
-    let rec traverse key leftNeighbor depth (addToFirstLiteral:int option) replacedLeft replacedRight : (int*int) * bool * bool * int option * (int*int) list =
+    let rec traverse key leftNeighbor depth (addToFirstLiteral:int option) replacedLeft replacedRight : (Guid) * bool * bool * int option =
         if replacedLeft && replacedRight then
-            (key, true, true, None, [])
+            (key, true, true, None)
         else
             match (map[key], depth, addToFirstLiteral) with
             | (Literal x, _, Some value) ->
@@ -87,8 +88,8 @@ let explode (tree:Tree) =
                 map <- map |> Map.change key (fun x ->
                     match x with 
                     | Some s -> Some(Literal ((getLiteralValue key map) + value)))
-                (key, true, true, None, [])
-            | (Literal _, _, _) -> (key, false, false, None, [])
+                (key, true, true, None)
+            | (Literal _, _, _) -> (key, false, false, None)
             | (Pair (left, right), dp, None) when dp > 3 -> 
                 let leftValue = getLiteralValue left map
                 let rightValue = getLiteralValue right map
@@ -106,67 +107,66 @@ let explode (tree:Tree) =
                     | Some s -> Some(Literal ((getLiteralValue leftNeighbor map) + leftValue))
                     | None -> None)
 
-                (key, true, false, Some(rightValue), [left; right])
+                (key, true, false, Some(rightValue))
             | (Pair (left, right), dp, _) ->
-                let (lftNeighbor, lhLeft, lhRight, addToRight, availIdx) = traverse left leftNeighbor (depth + 1) addToFirstLiteral replacedLeft replacedRight
-                let (lftNeighbor, rhLeft, rhRight, addToRight, availIdx2) = traverse right lftNeighbor (depth + 1) addToRight (replacedLeft || lhLeft) (replacedRight || lhRight)
-                (lftNeighbor, lhLeft || rhLeft || replacedLeft, lhRight || rhRight || replacedRight, addToRight, availIdx@availIdx2)
+                let (lftNeighbor, lhLeft, lhRight, addToRight) = traverse left leftNeighbor (depth + 1) addToFirstLiteral replacedLeft replacedRight
+                let (lftNeighbor, rhLeft, rhRight, addToRight) = traverse right lftNeighbor (depth + 1) addToRight (replacedLeft || lhLeft) (replacedRight || lhRight)
+                (lftNeighbor, lhLeft || rhLeft || replacedLeft, lhRight || rhRight || replacedRight, addToRight)
 
-    let (_, didXplode, _, _, availIdx) = traverse (fst tree) (-1,-1) 0 None false false
-    (didXplode, (fst tree, map), availIdx)
+    let (_, didXplode, _, _) = traverse (fst tree) Guid.Empty 0 None false false
+    (didXplode, (fst tree, map))
 
-let splitTree (tree:Tree) (availableIdx:(int*int) list) =
+let splitTree (tree:Tree) =
     let mutable map = snd tree
-    let rec traverse key didSplit (available:(int*int) list) =
+    let rec traverse key didSplit =
         match (didSplit, map[key]) with
-        | (true, _) -> (true, available)
+        | (true, _) -> true
         | (_, Literal x) when x > 9 -> 
             let newLeftVal = Literal (x / 2)
             let newRightVal = Literal ((x - 1) / 2 + 1)
 
-            map <- map |> Map.add available.Head newLeftVal
-            map <- map |> Map.add available.[1] newRightVal
+            let leftKey = Guid.NewGuid()
+            let rightKey = Guid.NewGuid()
+
+            map <- map |> Map.add leftKey newLeftVal
+            map <- map |> Map.add rightKey newRightVal
             map <- map |> Map.change key (fun x -> 
                 match x with
-                | Some s -> Some(Pair(available.Head, available.[1])))
-            (true, available |> List.skip 2)
-        | (_, Literal x) -> (didSplit, available)
+                | Some s -> Some(Pair(leftKey, rightKey)))
+            true
+        | (_, Literal x) -> didSplit
         | (_, Pair (left, right)) ->
-            let (didSplit, avail) = traverse left didSplit available
-            traverse right didSplit avail
-    let (didSplit, remainingIdx) = traverse (fst tree) false availableIdx
-    (didSplit, (fst tree, map), remainingIdx)
+            let didSplit = traverse left didSplit
+            traverse right didSplit
+    let (didSplit) = traverse (fst tree) false
+    (didSplit, (fst tree, map))
 
 let reduceFishNumber (tree:Tree) =
     let mutable didExplode = false
     let mutable didSplit = false
     let mutable tree = tree
-    let mutable availIdx = []
 
     // Exploding will remove 2 literals from the tree and split will add 2.
     // I'm hoping I can always use the deleted ones to insert new ones. If not, I will have to find a new 
     // scheme for indexing
-    let (xplod, t, idx) = explode tree
+    let (xplod, t) = explode tree
     didExplode <- xplod
     tree <- t
-    availIdx <- idx
     //printfn "R: %A" (print tree)
     while didExplode || didSplit do
-        let (xplod, t, idx) = explode tree
+        let (xplod, t) = explode tree
         didExplode <- xplod
         tree <- t
-        availIdx <- idx@availIdx
         if not didExplode then
-            let (spl, t, idx) = splitTree tree availIdx 
+            let (spl, t) = splitTree tree 
             didSplit <- spl
             tree <- t
-            availIdx <- idx
         //printfn "R: %A" (print tree)
     
     tree
 
         
-let calcMagniture (tree:Tree) =
+let calcMagnitude (tree:Tree) =
     let map = snd tree
     let rec traverse idx =
         match (map[idx]) with
@@ -191,9 +191,20 @@ let execute (input : string seq) =
     let added = addAndReduce parsed
     //let str = print added
 
-    let part1 = calcMagniture added
+    let part1 = calcMagnitude added
 
-    let part2 = "N/A"
+    // We're just bruteforcing the solution. It's quite slow
+    let part2 = 
+        Seq.allPairs parsed parsed
+        |> Seq.map (fun (fst, snd) -> 
+            if fst = snd 
+                then -1
+            else
+                let fstRes = fishAdd fst snd |> reduceFishNumber |> calcMagnitude
+                let sndRes = fishAdd snd fst |> reduceFishNumber |> calcMagnitude
+                max fstRes sndRes
+            )
+        |> Seq.max
 
     part1.ToString(), part2.ToString()
 
@@ -283,7 +294,7 @@ let ``Parsing Examples``() =
 let ``Explode Examples`` input expectedRes =
     let input = [ input ]
     let parsed = parseInput input |> List.ofSeq |> List.head
-    let (didExplode, res, _) = explode parsed
+    let (didExplode, res) = explode parsed
     Assert.True(didExplode)
     Assert.Equal(expectedRes, print res)
 
@@ -295,7 +306,7 @@ let ``Explode Examples`` input expectedRes =
 let ``Magnitude`` input expectedRes =
     let input = [ input ]
     let parsed = parseInput input
-    let magni = calcMagniture (parsed |> Seq.head)
+    let magni = calcMagnitude (parsed |> Seq.head)
     Assert.Equal (expectedRes, magni)
 
 [<Fact>]
