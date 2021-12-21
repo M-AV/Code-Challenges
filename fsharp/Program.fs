@@ -41,7 +41,7 @@ let printResult result =
 [<EntryPoint>]
 let main argv = 
     let year = if argv.Length > 0 then argv.[0] else "2021"
-    let day = if argv.Length > 1 then argv.[1] else "20"
+    let day = if argv.Length > 1 then argv.[1] else "21"
 
     printfn "## Puzzle %s/12-%s" day year
     printfn ""
