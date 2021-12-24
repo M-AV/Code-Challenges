@@ -43,6 +43,13 @@ let isOverlapping (first:CubeState) (second:CubeState) =
     x1_start <= x2_end && x2_start <= x1_end && 
     y1_start <= y2_end && y2_start <= y1_end && 
     z1_start <= z2_end && z2_start <= z1_end
+let isFullyWithin (first:CubeState) (second:CubeState) =
+    let (_, (x1_start, x1_end), (y1_start, y1_end), (z1_start, z1_end)) = first
+    let (_, (x2_start, x2_end), (y2_start, y2_end), (z2_start, z2_end)) = second
+
+    x1_start <= x2_start && x2_end <= x1_end && 
+    y1_start <= y2_start && y2_end <= y1_end && 
+    z1_start <= z2_start && z2_end <= z1_end
 
 // Is started on the complicated solution first, because I kinda new it was coming..
 // but then I thought I might as well just solve it the easy way and see if I was correct
@@ -56,7 +63,7 @@ let flipBitsInGrid (grid:int[,,]) state =
 // For part 2, the grid is too big to create. So I thought I would keep track of all cubes
 // and for each new action split them appropriately. It would then give me a list (just like the 
 // input) of all non-overlapping cubes and their states.
-// It takes almost 20 minutes to run on my PC... So it could use some optimizations.
+// It takes up to 20 minutes in Debug and ~35 seconds in release mode to run on my PC... So it could use some optimizations.
 let cutAxisAtOverlap ((x1_start, x1_end):int*int) ((x2_start, x2_end):int*int) =
     if (x1_start, x1_end) = (x2_start, x2_end) then
         ([], (x1_start, x1_end)), ([], (x2_start, x2_end))
@@ -105,6 +112,8 @@ let rec mergeOverlapping (toUpdate:CubeState) (newCube:CubeState) =
         ([toUpdate], [newCube])
     else if x_c = x_n && y_c = y_n && z_c = z_n then
         ([newCube], List.empty)
+    else if state_c = state_n && isFullyWithin toUpdate newCube then
+        ([toUpdate], []) // If state is the same and cube is fully wrapped, just throw it away
     else
         let mutable mergedCurrent = List.empty
         let mutable mergedNew = List.empty
