@@ -9,6 +9,18 @@
     <Compile Include="AdventOfCode\2019\2019-01.fs" />
     <Compile Include="AdventOfCode\20yy-dd.fs" />
     <Compile Include="AdventOfCode\Utils\Parsing.fs" />
+    <Compile Include="AdventOfCode\2021\2021-01.fs" />
+    <Compile Include="AdventOfCode\2021\2021-02.fs" />
+    <Compile Include="AdventOfCode\2021\2021-03.fs" />
+    <Compile Include="AdventOfCode\2021\2021-04.fs" />
+    <Compile Include="AdventOfCode\2021\2021-05.fs" />
+    <Compile Include="AdventOfCode\2021\2021-06.fs" />
+    <Compile Include="AdventOfCode\2021\2021-07.fs" />
+    <Compile Include="AdventOfCode\2021\2021-08.fs" />
+    <Compile Include="AdventOfCode\2021\2021-09.fs" />
+    <Compile Include="AdventOfCode\2021\2021-10.fs" />
+    <Compile Include="AdventOfCode\2021\2021-11.fs" />
+    <Compile Include="AdventOfCode\2021\2021-12.fs" />
     <Compile Include="AdventOfCode\2021\2021-13.fs" />
     <Compile Include="AdventOfCode\2021\2021-14.fs" />
     <Compile Include="AdventOfCode\2021\2021-15.fs" />
@@ -22,18 +34,6 @@
     <Compile Include="AdventOfCode\2021\2021-23.fs" />
     <Compile Include="AdventOfCode\2021\2021-24.fs" />
     <Compile Include="AdventOfCode\2021\2021-25.fs" />
-    <Compile Include="AdventOfCode\2021\2021-03.fs" />
-    <Compile Include="AdventOfCode\2021\2021-04.fs" />
-    <Compile Include="AdventOfCode\2021\2021-09.fs" />
-    <Compile Include="AdventOfCode\2021\2021-08.fs" />
-    <Compile Include="AdventOfCode\2021\2021-07.fs" />
-    <Compile Include="AdventOfCode\2021\2021-06.fs" />
-    <Compile Include="AdventOfCode\2021\2021-05.fs" />
-    <Compile Include="AdventOfCode\2021\2021-10.fs" />
-    <Compile Include="AdventOfCode\2021\2021-11.fs" />
-    <Compile Include="AdventOfCode\2021\2021-12.fs" />
-    <Compile Include="AdventOfCode\2021\2021-02.fs" />
-    <Compile Include="AdventOfCode\2021\2021-01.fs" />
     <Content Include="authtoken.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
