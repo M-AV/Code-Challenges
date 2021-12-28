@@ -16,8 +16,7 @@ type Node =
         match x.Item with
         | Some _ -> true
         | None -> false
-    //static member New occupied nodes : Node =
-    //    { Occupied = occupied; Nodes = nodes }
+
 type Room = char * char list * int
 type GameState = Map<int, Node> * Room list
 
@@ -200,7 +199,7 @@ let solveWithLowestCost (input:GameState) =
 
     // Don't know when this application stops. We're processing lots of duplicate states, 
     // but when I add a map to keep track of previous states I end up with the wrong result.. 
-    // It finds the correct result fairly quickly, but checking running. :/
+    // It finds the correct result fairly quickly, but keeps running. :/
     let rec solve state currentCost = 
         let availableMoves = getAvailableMoves state currentCost |> List.filter (fun (_, cost) -> cost < minCost)
 
@@ -231,7 +230,10 @@ let execute (input : string seq) =
 
     printfn "%A" parsed
 
-    //let part1 = solveWithLowestCost parsed
+    // Currently, you will have to comment out part 1 to see part 2 as I don't know when the program
+    // finishes.. (maybe never?) However, it does print out the correct result after a few seconds
+
+    let part1 = solveWithLowestCost parsed
 
     let (hallway, rooms) = parsed
 
@@ -247,4 +249,4 @@ let execute (input : string seq) =
 
     let part2 = solveWithLowestCost part2Input
 
-    "RIP".ToString(), part2.ToString()
+    part1.ToString(), part2.ToString()
