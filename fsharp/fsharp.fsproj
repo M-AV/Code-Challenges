@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-
 	<Compile Include="InputProvider.fs" />
 
 	<Compile Include="AdventOfCode\Utils\Calculations.fs" />
@@ -14,6 +13,8 @@
     
     <Compile Include="AdventOfCode\2015\2015-01.fs" />
 	<Compile Include="AdventOfCode\2015\2015-02.fs" />
+	<Compile Include="AdventOfCode\2015\2015-03.fs" />
+	<Compile Include="AdventOfCode\2015\2015-04.fs" />
     <Compile Include="AdventOfCode\2015\2015-dd.fs" />
 
 	<Compile Include="AdventOfCode\2016\2016-01.fs" />

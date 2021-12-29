@@ -7,8 +7,12 @@ let private solvers year day =
     match (year, day) with
     | ("2015", "1") -> Some _2015_01.execute
     | ("2015", "2") -> Some _2015_02.execute
+    | ("2015", "3") -> Some _2015_03.execute
+    | ("2015", "4") -> Some _2015_04.execute
 
     | ("2016", "1") -> Some _2016_01.execute
+
+    | ("2017", "1") -> Some _2017_01.execute
 
     | ("2018", "1") -> Some _2018_01.execute
 
@@ -49,8 +53,8 @@ let printResult result =
 
 [<EntryPoint>]
 let main argv = 
-    let year = if argv.Length > 0 then argv.[0] else "2018"
-    let day = if argv.Length > 1 then argv.[1] else "1"
+    let year = if argv.Length > 0 then argv.[0] else "2015"
+    let day = if argv.Length > 1 then argv.[1] else "4"
 
     printfn "## Puzzle %s/12-%s" day year
     printfn ""
