@@ -6,14 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="AdventOfCode\2015\2015-02.fs" />
+	<Compile Include="InputProvider.fs" />
+	<Compile Include="AdventOfCode\Utils\Calculations.fs" />
+	<Compile Include="AdventOfCode\Utils\Parsing.fs" />
+    
     <Compile Include="AdventOfCode\2016\2016-01.fs" />
     <Compile Include="AdventOfCode\2016\2016-dd.fs" />
     <Compile Include="AdventOfCode\2015\2015-01.fs" />
+	<Compile Include="AdventOfCode\2015\2015-02.fs" />
     <Compile Include="AdventOfCode\2015\2015-dd.fs" />
+	  
     <Compile Include="AdventOfCode\2019\2019-01.fs" />
-    <Compile Include="AdventOfCode\20yy-dd.fs" />
-    <Compile Include="AdventOfCode\Utils\Parsing.fs" />
+
     <Compile Include="AdventOfCode\2021\2021-01.fs" />
     <Compile Include="AdventOfCode\2021\2021-02.fs" />
     <Compile Include="AdventOfCode\2021\2021-03.fs" />
@@ -39,10 +43,11 @@
     <Compile Include="AdventOfCode\2021\2021-23.fs" />
     <Compile Include="AdventOfCode\2021\2021-24.fs" />
     <Compile Include="AdventOfCode\2021\2021-25.fs" />
+	<Compile Include="AdventOfCode\20yy-dd.fs" />
     <Content Include="authtoken.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Compile Include="InputProvider.fs" />
+    
     <Compile Include="Program.fs" />
   </ItemGroup>
 

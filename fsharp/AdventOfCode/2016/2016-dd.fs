@@ -1,5 +1,8 @@
 ﻿module _2016_xx
 
+open InputProvider
+open Calculations
+open Parsing
 open System
 open Xunit
 
@@ -21,7 +24,7 @@ let execute (input : string seq) =
 
     part1.ToString(), part2.ToString()
 
-//[<Fact>]
-//let ``Test``() =
-//    let (part1, part2) = execute []
-//    Assert.Equal(1,1)
+let ``Test``() =
+    let (part1, part2) = execute (getPuzzleInput "2016" "xx" |> Async.RunSynchronously)
+    Assert.Equal("N/A", part1)
+    Assert.Equal("N/A", part2)

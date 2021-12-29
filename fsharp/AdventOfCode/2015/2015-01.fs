@@ -1,5 +1,6 @@
 ﻿module _2015_01
 
+open InputProvider
 open System
 open Xunit
 
@@ -37,6 +38,6 @@ let execute (input : string seq) =
 
 [<Fact>]
 let ``Test``() =
-    let (part1, part2) = execute []
-    Assert.Equal("232",part1)
-    Assert.Equal("1783",part2)
+    let (part1, part2) = execute (getPuzzleInput "2015" "1" |> Async.RunSynchronously)
+    Assert.Equal("232", part1)
+    Assert.Equal("1783", part2)
