@@ -7,6 +7,7 @@
 
   <ItemGroup>
 	<Compile Include="InputProvider.fs" />
+	<Compile Include="AdventOfCode\2020\2020-dd.fs" />
 	<Compile Include="AdventOfCode\Utils\Calculations.fs" />
 	<Compile Include="AdventOfCode\Utils\Parsing.fs" />
     
@@ -18,6 +19,8 @@
 	  
     <Compile Include="AdventOfCode\2019\2019-01.fs" />
 
+	<Compile Include="AdventOfCode\2020\2020-01.fs" />
+	  
     <Compile Include="AdventOfCode\2021\2021-01.fs" />
     <Compile Include="AdventOfCode\2021\2021-02.fs" />
     <Compile Include="AdventOfCode\2021\2021-03.fs" />
