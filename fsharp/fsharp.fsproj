@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="AdventOfCode\2015\2015-02.fs" />
+    <Compile Include="AdventOfCode\2016\2016-01.fs" />
+    <Compile Include="AdventOfCode\2016\2016-dd.fs" />
+    <Compile Include="AdventOfCode\2015\2015-01.fs" />
+    <Compile Include="AdventOfCode\2015\2015-dd.fs" />
     <Compile Include="AdventOfCode\2019\2019-01.fs" />
     <Compile Include="AdventOfCode\20yy-dd.fs" />
     <Compile Include="AdventOfCode\Utils\Parsing.fs" />

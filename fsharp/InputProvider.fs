@@ -11,10 +11,10 @@ let private httpClient = new HttpClient(httpClientHandler)
 let private baseUrl = new Uri("https://adventofcode.com")
 let private cacheDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
 
-let private directory = "../../../Inputs"
+let private directory = "../../../Inputs/Advent of Code/"
 
 let private getInputFilePath year day = 
-    let path = Path.Combine(directory, year + "-" + day + ".txt")
+    let path = Path.Combine(directory + year + "/", year + "-" + day + ".txt")
     new FileInfo(path)
 let private getInputUrl year day =
     new Uri(baseUrl, Path.Combine(year, "day", day, "input"))
@@ -48,6 +48,8 @@ let private downloadInputAsync year day token =
 
        if not(Directory.Exists(directory)) then
             Directory.CreateDirectory(directory) |> ignore
+       if not(Directory.Exists(directory + year + "/")) then
+            Directory.CreateDirectory(directory + year + "/") |> ignore
 
        File.WriteAllLinesAsync(file.FullName, splitLines) |> Async.AwaitTask |> ignore
        return splitLines

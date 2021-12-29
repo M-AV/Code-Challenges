@@ -1,4 +1,4 @@
-﻿module _20yy_xx
+﻿module _2016_01
 
 open System
 open Xunit
@@ -8,12 +8,15 @@ open Xunit
 
 let parseInput (input : string seq) = 
     input
+    |> Seq.map (fun x -> x.Split ", ")
+    |> Seq.head
+    |> Seq.map (fun x -> (x[0], Int32.Parse x[1..]))
 
 let execute (input : string seq) =
     printfn "Input count: %i" (Seq.length input)
 
     let parsed = parseInput input
-    printfn "%A" parsed
+    //printfn "%A" parsed
 
     let part1 = "N/A"
 
