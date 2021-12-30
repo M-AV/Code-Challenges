@@ -9,6 +9,7 @@ let private solvers year day =
     | ("2015", "2") -> Some _2015_02.execute
     | ("2015", "3") -> Some _2015_03.execute
     | ("2015", "4") -> Some _2015_04.execute
+    | ("2015", "5") -> Some _2015_05.execute
 
     | ("2016", "1") -> Some _2016_01.execute
 
@@ -54,7 +55,7 @@ let printResult result =
 [<EntryPoint>]
 let main argv = 
     let year = if argv.Length > 0 then argv.[0] else "2015"
-    let day = if argv.Length > 1 then argv.[1] else "4"
+    let day = if argv.Length > 1 then argv.[1] else "5"
 
     printfn "## Puzzle %s/12-%s" day year
     printfn ""

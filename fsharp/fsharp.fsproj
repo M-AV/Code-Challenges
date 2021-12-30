@@ -15,6 +15,7 @@
 	<Compile Include="AdventOfCode\2015\2015-02.fs" />
 	<Compile Include="AdventOfCode\2015\2015-03.fs" />
 	<Compile Include="AdventOfCode\2015\2015-04.fs" />
+	<Compile Include="AdventOfCode\2015\2015-05.fs" />
     <Compile Include="AdventOfCode\2015\2015-dd.fs" />
 
 	<Compile Include="AdventOfCode\2016\2016-01.fs" />
@@ -24,7 +25,7 @@
 	<Compile Include="AdventOfCode\2017\2017-01.fs" />
 
 	<Compile Include="AdventOfCode\2018\2018-dd.fs" />
-	  <Compile Include="AdventOfCode\2018\2018-01.fs" />
+	<Compile Include="AdventOfCode\2018\2018-01.fs" />
 	<Compile Include="AdventOfCode\2019\2019-01.fs" />
 
 	<Compile Include="AdventOfCode\2020\2020-dd.fs" />
