@@ -2,61 +2,88 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="AdventOfCode\2022\**" />
+  </ItemGroup>
 
   <ItemGroup>
 	<Compile Include="InputProvider.fs" />
 
 	<Compile Include="AdventOfCode\Utils\Calculations.fs" />
 	<Compile Include="AdventOfCode\Utils\Parsing.fs" />
-    
-    <Compile Include="AdventOfCode\2015\2015-01.fs" />
-	<Compile Include="AdventOfCode\2015\2015-02.fs" />
-	<Compile Include="AdventOfCode\2015\2015-03.fs" />
-	<Compile Include="AdventOfCode\2015\2015-04.fs" />
-	<Compile Include="AdventOfCode\2015\2015-05.fs" />
-    <Compile Include="AdventOfCode\2015\2015-dd.fs" />
-
-	<Compile Include="AdventOfCode\2016\2016-01.fs" />
-	<Compile Include="AdventOfCode\2016\2016-dd.fs" />
-
-	<Compile Include="AdventOfCode\2017\2017-dd.fs" />
-	<Compile Include="AdventOfCode\2017\2017-01.fs" />
+	<Compile Include="AdventOfCode\Utils\Setup.fs" />
+	<Compile Include="AdventOfCode\2022\2022-01.fs" />
+	<Compile Include="AdventOfCode\2022\2022-02.fs" />
+	<Compile Include="AdventOfCode\2022\2022-03.fs" />
+	<Compile Include="AdventOfCode\2022\2022-04.fs" />
+	<Compile Include="AdventOfCode\2022\2022-05.fs" />
+	<Compile Include="AdventOfCode\2022\2022-06.fs" />
+	<Compile Include="AdventOfCode\2022\2022-07.fs" />
+	<Compile Include="AdventOfCode\2022\2022-08.fs" />
+	<Compile Include="AdventOfCode\2022\2022-09.fs" />
+	<Compile Include="AdventOfCode\2022\2022-10.fs" />
+	<Compile Include="AdventOfCode\2022\2022-11.fs" />
+	<Compile Include="AdventOfCode\2022\2022-12.fs" />
+	<Compile Include="AdventOfCode\2022\2022-13.fs" />
+	<Compile Include="AdventOfCode\2022\2022-14.fs" />
+	<Compile Include="AdventOfCode\2022\2022-15.fs" />
+	<Compile Include="AdventOfCode\2022\2022-16.fs" />
+	<Compile Include="AdventOfCode\2022\2022-17.fs" />
+	<Compile Include="AdventOfCode\2022\2022-18.fs" />
+	<Compile Include="AdventOfCode\2022\2022-19.fs" />
+	<Compile Include="AdventOfCode\2022\2022-20.fs" />
+	<Compile Include="AdventOfCode\2022\2022-21.fs" />
+	<Compile Include="AdventOfCode\2022\2022-22.fs" />
+	<Compile Include="AdventOfCode\2022\2022-23.fs" />
+	<Compile Include="AdventOfCode\2022\2022-24.fs" />
+	<Compile Include="AdventOfCode\2022\2022-25.fs" />
+	<Compile Include="AdventOfCode\2021\2021-01.fs" />
+	<Compile Include="AdventOfCode\2021\2021-02.fs" />
+	<Compile Include="AdventOfCode\2021\2021-03.fs" />
+	<Compile Include="AdventOfCode\2021\2021-04.fs" />
+	<Compile Include="AdventOfCode\2021\2021-05.fs" />
+	<Compile Include="AdventOfCode\2021\2021-06.fs" />
+	<Compile Include="AdventOfCode\2021\2021-07.fs" />
+	<Compile Include="AdventOfCode\2021\2021-08.fs" />
+	<Compile Include="AdventOfCode\2021\2021-09.fs" />
+	<Compile Include="AdventOfCode\2021\2021-10.fs" />
+	<Compile Include="AdventOfCode\2021\2021-11.fs" />
+	<Compile Include="AdventOfCode\2021\2021-12.fs" />
+	<Compile Include="AdventOfCode\2021\2021-13.fs" />
+	<Compile Include="AdventOfCode\2021\2021-14.fs" />
+	<Compile Include="AdventOfCode\2021\2021-15.fs" />
+	<Compile Include="AdventOfCode\2021\2021-16.fs" />
+	<Compile Include="AdventOfCode\2021\2021-17.fs" />
+	<Compile Include="AdventOfCode\2021\2021-18.fs" />
+	<Compile Include="AdventOfCode\2021\2021-19.fs" />
+	<Compile Include="AdventOfCode\2021\2021-20.fs" />
+	<Compile Include="AdventOfCode\2021\2021-21.fs" />
+	<Compile Include="AdventOfCode\2021\2021-22.fs" />
+	<Compile Include="AdventOfCode\2021\2021-23.fs" />
+	<Compile Include="AdventOfCode\2021\2021-24.fs" />
+	<Compile Include="AdventOfCode\2021\2021-25.fs" />
+	<Compile Include="AdventOfCode\2020\2020-dd.fs" />
+	<Compile Include="AdventOfCode\2020\2020-01.fs" />
+	<Compile Include="AdventOfCode\2019\2019-01.fs" />
 
 	<Compile Include="AdventOfCode\2018\2018-dd.fs" />
 	<Compile Include="AdventOfCode\2018\2018-01.fs" />
-	<Compile Include="AdventOfCode\2019\2019-01.fs" />
-
-	<Compile Include="AdventOfCode\2020\2020-dd.fs" />
-	<Compile Include="AdventOfCode\2020\2020-01.fs" />
-	  
-    <Compile Include="AdventOfCode\2021\2021-01.fs" />
-    <Compile Include="AdventOfCode\2021\2021-02.fs" />
-    <Compile Include="AdventOfCode\2021\2021-03.fs" />
-    <Compile Include="AdventOfCode\2021\2021-04.fs" />
-    <Compile Include="AdventOfCode\2021\2021-05.fs" />
-    <Compile Include="AdventOfCode\2021\2021-06.fs" />
-    <Compile Include="AdventOfCode\2021\2021-07.fs" />
-    <Compile Include="AdventOfCode\2021\2021-08.fs" />
-    <Compile Include="AdventOfCode\2021\2021-09.fs" />
-    <Compile Include="AdventOfCode\2021\2021-10.fs" />
-    <Compile Include="AdventOfCode\2021\2021-11.fs" />
-    <Compile Include="AdventOfCode\2021\2021-12.fs" />
-    <Compile Include="AdventOfCode\2021\2021-13.fs" />
-    <Compile Include="AdventOfCode\2021\2021-14.fs" />
-    <Compile Include="AdventOfCode\2021\2021-15.fs" />
-    <Compile Include="AdventOfCode\2021\2021-16.fs" />
-    <Compile Include="AdventOfCode\2021\2021-17.fs" />
-    <Compile Include="AdventOfCode\2021\2021-18.fs" />
-    <Compile Include="AdventOfCode\2021\2021-19.fs" />
-    <Compile Include="AdventOfCode\2021\2021-20.fs" />
-    <Compile Include="AdventOfCode\2021\2021-21.fs" />
-    <Compile Include="AdventOfCode\2021\2021-22.fs" />
-    <Compile Include="AdventOfCode\2021\2021-23.fs" />
-    <Compile Include="AdventOfCode\2021\2021-24.fs" />
-    <Compile Include="AdventOfCode\2021\2021-25.fs" />
-	<Compile Include="AdventOfCode\20yy-dd.fs" />
+	<Compile Include="AdventOfCode\2017\2017-dd.fs" />
+	<Compile Include="AdventOfCode\2017\2017-01.fs" />
+	<Compile Include="AdventOfCode\2016\2016-01.fs" />
+	<Compile Include="AdventOfCode\2016\2016-dd.fs" />
+    <Compile Include="AdventOfCode\2015\2015-01.fs" />
+    <Compile Include="AdventOfCode\2015\2015-02.fs" />
+    <Compile Include="AdventOfCode\2015\2015-03.fs" />
+    <Compile Include="AdventOfCode\2015\2015-04.fs" />
+    <Compile Include="AdventOfCode\2015\2015-05.fs" />
+    <Compile Include="AdventOfCode\2015\2015-dd.fs" />
+	<Compile Include="AdventOfCode\20yy-dd.fs">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Compile>
     <Content Include="authtoken.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

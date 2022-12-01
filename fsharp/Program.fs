@@ -1,6 +1,7 @@
 ﻿open System.Diagnostics
 open InputProvider
 open System
+open Setup
 
 // Setup inspired from here: https://github.com/Spinkelben/adventofcode/blob/master/Program.fs
 let private solvers year day =
@@ -46,16 +47,41 @@ let private solvers year day =
     | ("2021", "23") -> Some _2021_23.execute
     | ("2021", "24") -> Some _2021_24.execute
     | ("2021", "25") -> Some _2021_25.execute
+
+    | ("2022", "01") -> Some _2022_01.execute
+    | ("2022", "02") -> Some _2022_02.execute
+    | ("2022", "03") -> Some _2022_03.execute
+    | ("2022", "04") -> Some _2022_04.execute
+    | ("2022", "05") -> Some _2022_05.execute
+    | ("2022", "06") -> Some _2022_06.execute
+    | ("2022", "07") -> Some _2022_07.execute
+    | ("2022", "08") -> Some _2022_08.execute
+    | ("2022", "09") -> Some _2022_09.execute
+    | ("2022", "10") -> Some _2022_10.execute
+    | ("2022", "11") -> Some _2022_11.execute
+    | ("2022", "12") -> Some _2022_12.execute
+    | ("2022", "13") -> Some _2022_13.execute
+    | ("2022", "14") -> Some _2022_14.execute
+    | ("2022", "15") -> Some _2022_15.execute
+    | ("2022", "16") -> Some _2022_16.execute
+    | ("2022", "17") -> Some _2022_17.execute
+    | ("2022", "18") -> Some _2022_18.execute
+    | ("2022", "19") -> Some _2022_19.execute
+    | ("2022", "20") -> Some _2022_20.execute
+    | ("2022", "21") -> Some _2022_21.execute
+    | ("2022", "22") -> Some _2022_22.execute
+    | ("2022", "23") -> Some _2022_23.execute
+    | ("2022", "24") -> Some _2022_24.execute
+    | ("2022", "25") -> Some _2022_25.execute
     | _ -> None
 
 let printResult result =
     printfn "Solution:"
     printfn "  Part 1: %s \r\n  Part 2: %s" (fst result) (snd result)
 
-[<EntryPoint>]
-let main argv = 
-    let year = if argv.Length > 0 then argv.[0] else "2015"
-    let day = if argv.Length > 1 then argv.[1] else "5"
+let solvePuzzle (argv:string array) =
+    let year = if argv.Length > 0 then argv.[0] else "2022"
+    let day = if argv.Length > 1 then argv.[1] else "1"
 
     printfn "## Puzzle %s/12-%s" day year
     printfn ""
@@ -73,3 +99,10 @@ let main argv =
     printf "Time spent: %s" (stopwatch.Elapsed.ToString())
 
     0
+
+[<EntryPoint>]
+let main argv = 
+    //Setup.setupYear()
+    solvePuzzle argv
+
+    
