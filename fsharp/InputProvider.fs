@@ -23,7 +23,7 @@ let private getInputUrl year day =
 let private removeWhitespace lines = 
     let a = lines 
            |> Seq.map (fun (s:string) -> s.Trim())
-           |> Seq.filter (fun s -> s.Length > 0)
+           //|> Seq.filter (fun s -> s.Length > 0) // This was removed in 2022, as the puzzle requires empty lines. Haven't checked if any of the 2021 challenges are now broken
            |> Seq.toArray
     if Array.last a = "" then
         a |> Array.take(Array.length a - 1)

@@ -1,4 +1,4 @@
-module _2022_06
+module _2022_6
 
 open InputProvider
 open Calculations
@@ -24,7 +24,8 @@ let execute (input : string seq) =
 
     part1.ToString(), part2.ToString()
 
+//[<Fact>]
 let ``Test``() =
-    let (part1, part2) = execute (getPuzzleInput "2022" "06" |> Async.RunSynchronously)
+    let (part1, part2) = execute (getPuzzleInput "2022" "6" |> Async.RunSynchronously)
     Assert.Equal("N/A", part1)
     Assert.Equal("N/A", part2)

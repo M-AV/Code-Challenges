@@ -48,15 +48,15 @@ let private solvers year day =
     | ("2021", "24") -> Some _2021_24.execute
     | ("2021", "25") -> Some _2021_25.execute
 
-    | ("2022", "01") -> Some _2022_01.execute
-    | ("2022", "02") -> Some _2022_02.execute
-    | ("2022", "03") -> Some _2022_03.execute
-    | ("2022", "04") -> Some _2022_04.execute
-    | ("2022", "05") -> Some _2022_05.execute
-    | ("2022", "06") -> Some _2022_06.execute
-    | ("2022", "07") -> Some _2022_07.execute
-    | ("2022", "08") -> Some _2022_08.execute
-    | ("2022", "09") -> Some _2022_09.execute
+    | ("2022", "1") -> Some _2022_1.execute
+    | ("2022", "2") -> Some _2022_2.execute
+    | ("2022", "3") -> Some _2022_3.execute
+    | ("2022", "4") -> Some _2022_4.execute
+    | ("2022", "5") -> Some _2022_5.execute
+    | ("2022", "6") -> Some _2022_6.execute
+    | ("2022", "7") -> Some _2022_7.execute
+    | ("2022", "8") -> Some _2022_8.execute
+    | ("2022", "9") -> Some _2022_9.execute
     | ("2022", "10") -> Some _2022_10.execute
     | ("2022", "11") -> Some _2022_11.execute
     | ("2022", "12") -> Some _2022_12.execute

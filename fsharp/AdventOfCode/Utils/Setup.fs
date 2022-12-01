@@ -3,13 +3,14 @@
 open System
 open System.IO
 
-let createFile year day (template:string) =
-    let fileName = $"./../../../AdventOfCode/{year}/{year}-{day}.fs"
-    let modifiedTemplate = template.Replace("dd", day)
+let createFile year (day:int) (template:string) =
+    let formattedDay = day.ToString("D2")
+    let fileName = $"./../../../AdventOfCode/{year}/{year}-{formattedDay}.fs"
+    let modifiedTemplate = template.Replace("dd", day.ToString())
     let s = 
         match File.Exists(fileName) with 
         | true -> 
-            printfn "%s-%s already exists.. Skipping!" year day
+            printfn "%s-%i already exists.. Skipping!" year day
             0
         | false -> 
             File.WriteAllText (fileName, modifiedTemplate)
@@ -28,17 +29,14 @@ let setupYear () =
         | _ -> ()
 
     for i in 1 .. 25 do
-        let formattedDay = i.ToString("D2")
-        //printfn "%s" formattedDay
-        createFile year formattedDay template |> ignore
+        createFile year i template |> ignore
 
     printfn "Files created..";
     printfn "Copy pasta the code below to the Program.fs file"
     printfn ""
 
     for i in 1 .. 25 do
-        let formattedDay = i.ToString("D2")
-        printfn "    | (\"%s\", \"%s\") -> Some _%s_%s.execute" year formattedDay year formattedDay
+        printfn "    | (\"%s\", \"%i\") -> Some _%s_%i.execute" year i year i
 
 
     0
