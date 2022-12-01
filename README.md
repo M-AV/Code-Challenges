@@ -1,6 +1,8 @@
 # Code Challenges
-Occasionally, when I have nothing better to do, I spend some time solving code challenges. This project contains all my solutions.
+Occasionally, when I have nothing better to do, I spend some time solving code challenges. This project contains all my solutions. All of them are done for fun and for learning purposes, so don't expect any good code. :) 
 
-Many years ago I did some CodeEval challenges, but the site seems to be gone.
+What challenges are in here? 
 
-Many of these were done for learning purposes and/or just fun so the quality probably sucks. ¯\_(ツ)_/¯
+ - In 2021 I started doing some Advent of Code in F#, mostly to learn the language.
+
+ - Many years ago I did some CodeEval challenges. The site seems to be gone though. 
