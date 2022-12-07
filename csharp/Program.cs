@@ -1,6 +1,7 @@
 ﻿using CodeEval_Solutions.Easy.Swap_Elements;
 using CodeEval_Solutions.Moderate.Data_Recovery;
 using csharp.AdventOfCode._2021;
+using csharp.AdventOfCode._2022;
 using System.Diagnostics;
 
 static void PrepareGC()
@@ -10,9 +11,9 @@ static void PrepareGC()
     GC.Collect();
 }
 
-string input = "";// Console.ReadLine();
+string input = "./../../../../fsharp/Inputs/Advent of Code/2022/2022-7.txt";// Console.ReadLine();
 
-await Day5.Execute(input);
+await Day7.Execute(input);
 
 return;
 

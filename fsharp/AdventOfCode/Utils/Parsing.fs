@@ -18,3 +18,10 @@ let batchesOf n =
     Seq.groupBy fst >>
     Seq.map snd >>
     Seq.map (Seq.map snd)
+
+
+let (|Prefix|_|) (p:string) (s:string) =
+    if s.StartsWith(p) then
+        Some(s.Substring(p.Length))
+    else
+        None
