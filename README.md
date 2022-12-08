@@ -3,6 +3,6 @@ Occasionally, when I have nothing better to do, I spend some time solving code c
 
 What challenges are in here? 
 
- - In 2021 I started doing some Advent of Code in F#, mostly to learn the language.
+ - In 2021 I started doing some [Advent of Code](https://adventofcode.com) in F#, mostly to learn the language. I have tried to solve all of the challenges in 2021 and 2022 (so far) in F#. A few also have a solution in C#.
 
  - Many years ago I did some CodeEval challenges. The site seems to be gone though. 
