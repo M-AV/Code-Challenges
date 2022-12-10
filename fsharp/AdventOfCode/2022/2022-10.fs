@@ -47,7 +47,7 @@ let part2 input =
             Console.ForegroundColor <- ConsoleColor.Green
             printf "#"
         else 
-            Console.ForegroundColor <- ConsoleColor.DarkGray
+            Console.ForegroundColor <- ConsoleColor.Black
             printf "."
 
 
