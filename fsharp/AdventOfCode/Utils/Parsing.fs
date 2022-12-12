@@ -12,6 +12,15 @@ let parseArray2d (input: string seq) =
         |> Array.ofSeq
     Array2D.init arr[0].Length arr.Length (fun x y -> arr[y][x])
 
+// Logic is fairly simple, but I found this while searching for a built in way: https://stackoverflow.com/a/49891028/1401257
+let find2d needle (arr: char[,]) =
+    let rec search x y =
+        if y >= arr.GetLength 1 then None
+        else if x >= arr.GetLength 0 then search 0 (y+1)
+        else if arr[x,y] = needle then Some(x,y)
+        else search (x+1) y
+    search 0 0
+
 // Batching logic from here: https://stackoverflow.com/a/7518857/1401257
 let batchesOf n = 
     Seq.mapi (fun i v -> i / n, v) >>

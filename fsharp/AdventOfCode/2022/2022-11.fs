@@ -10,8 +10,6 @@ open System.Collections.Generic
 // Task 1: Simulate monkey throws and count each inspection
 // Task 2: Do the same thing as before, but 10.000 times and without dividing by 3 each time.
 
-
-
 let parseInput (input : string seq) = 
     let monkeys = 
         input 
@@ -42,8 +40,6 @@ let parseInput (input : string seq) =
     let tests = monkeys |> Array.map (fun x -> int64 x[2]) |> Array.map (fun x -> (fun v -> (v % x) = 0L))
 
     let divisor = monkeys |> Array.map (fun x -> int64 x[2]) |> Array.fold (*) 1L
-
-    let sadfas = monkeys |> Array.map (fun x -> int64 x[2])
 
     let trues = monkeys |> Array.map (fun x -> int x[3])
     let falses = monkeys |> Array.map (fun x -> int x[4])
