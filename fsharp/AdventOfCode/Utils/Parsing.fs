@@ -28,6 +28,14 @@ let batchesOf n =
     Seq.map snd >>
     Seq.map (Seq.map snd)
 
+let batchesOf2 input =
+    input
+    |> Seq.mapi (fun i v -> i / 2, v)
+    |> Seq.groupBy fst 
+    |> Seq.map snd
+    |> Seq.map (Seq.map snd)
+    |> Seq.map (Array.ofSeq)
+    |> Seq.map (fun x -> x[0],x[1])
 
 let (|Prefix|_|) (p:string) (s:string) =
     if s.StartsWith(p) then
