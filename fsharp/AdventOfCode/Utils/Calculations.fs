@@ -17,3 +17,13 @@ let array2dMax input =
             max <- x);
 
     max
+
+// From here https://stackoverflow.com/a/32830039/1401257
+// Works by taking one element and calculating all subsets without that element, 
+// then duplicating all of them and adding the one item to the dupes 
+let rec powerset = 
+   function
+   | [] -> [[]]
+   | (x::xs) -> 
+      let xss = powerset xs 
+      List.map (fun xs' -> x::xs') xss @ xss
