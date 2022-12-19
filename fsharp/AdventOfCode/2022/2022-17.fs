@@ -127,8 +127,6 @@ let findFullRows grid lowestRow =
     matches
 
 
-
-
 // IDEA
 // Simulate blocks as they are
 // Repeatedly what the lowest achievable position is
