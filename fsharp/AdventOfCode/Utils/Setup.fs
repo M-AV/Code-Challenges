@@ -38,5 +38,11 @@ let setupYear () =
     for i in 1 .. 25 do
         printfn "    | (\"%s\", \"%i\") -> Some _%s_%i.execute" year i year i
 
+    printfn ""
+    printfn "Copy pasta the lines into the csproj file"
+
+    for i in 1 .. 25 do
+        printfn "    <Compile Include=\"AdventOfCode\%s\%s-%s.fs\" />" year year (i.ToString("D2"))
+
 
     0

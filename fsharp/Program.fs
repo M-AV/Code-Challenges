@@ -11,6 +11,26 @@ let private solvers year day =
     | ("2015", "3") -> Some _2015_03.execute
     | ("2015", "4") -> Some _2015_04.execute
     | ("2015", "5") -> Some _2015_05.execute
+    | ("2015", "6") -> Some _2015_6.execute
+    | ("2015", "7") -> Some _2015_7.execute
+    | ("2015", "8") -> Some _2015_8.execute
+    | ("2015", "9") -> Some _2015_9.execute
+    | ("2015", "10") -> Some _2015_10.execute
+    | ("2015", "11") -> Some _2015_11.execute
+    | ("2015", "12") -> Some _2015_12.execute
+    | ("2015", "13") -> Some _2015_13.execute
+    | ("2015", "14") -> Some _2015_14.execute
+    | ("2015", "15") -> Some _2015_15.execute
+    | ("2015", "16") -> Some _2015_16.execute
+    | ("2015", "17") -> Some _2015_17.execute
+    | ("2015", "18") -> Some _2015_18.execute
+    | ("2015", "19") -> Some _2015_19.execute
+    | ("2015", "20") -> Some _2015_20.execute
+    | ("2015", "21") -> Some _2015_21.execute
+    | ("2015", "22") -> Some _2015_22.execute
+    | ("2015", "23") -> Some _2015_23.execute
+    | ("2015", "24") -> Some _2015_24.execute
+    | ("2015", "25") -> Some _2015_25.execute
 
     | ("2016", "1") -> Some _2016_01.execute
 
@@ -81,7 +101,7 @@ let printResult result =
 
 let solvePuzzle (argv:string array) =
     let year = if argv.Length > 0 then argv.[0] else "2022"
-    let day = if argv.Length > 1 then argv.[1] else "19"
+    let day = if argv.Length > 1 then argv.[1] else "20"
 
     printfn "## Puzzle %s/12-%s" day year
     printfn ""
