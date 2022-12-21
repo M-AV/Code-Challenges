@@ -6,8 +6,6 @@ open Parsing
 open System
 open Xunit
 
-// NONE OF THIS WORKS!
-
 // Task 1: Parse folder structure and find every folder with size at 100000 or less and sum it.
 // Task 2: Find smallest folder to delete so we get enough space
 
