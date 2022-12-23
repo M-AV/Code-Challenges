@@ -27,13 +27,3 @@ let rec powerset =
    | (x::xs) -> 
       let xss = powerset xs 
       List.map (fun xs' -> x::xs') xss @ xss
-
-let printGrid2d grid =
-    let mutable mutableMaxX = -1
-    let mutable mutableMinX = Int32.MaxValue
-    let mutable maxY = -1;
-    for y = 0 to (Array2D.length2 grid)-1 do 
-        for x = 0 to (Array2D.length1 grid)-1 do
-                printf "%c" grid[x,y]
-        printfn ""
-    printfn ""

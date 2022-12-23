@@ -44,7 +44,7 @@ let private downloadInputAsync year day token =
        let! result = httpClient.GetAsync(getInputUrl year day) |> Async.AwaitTask
        let! content = result.Content.ReadAsStringAsync() |> Async.AwaitTask
        let file = getInputFilePath year day
-       let splitLines = content.Split('\n') |> removeWhitespace
+       let splitLines = content.Split('\n') // |> removeWhitespace
 
        if not(Directory.Exists(directory)) then
             Directory.CreateDirectory(directory) |> ignore
@@ -62,9 +62,9 @@ let getPuzzleInput year day =
             let token = tokenFileData.[0]
             if file.Exists then
                 let! input = File.ReadAllLinesAsync(file.FullName) |> Async.AwaitTask
-                return removeWhitespace input
+                return input
             else 
                 let! input = downloadInputAsync year day token
-                return (input |> removeWhitespace)
+                return input
         }
         

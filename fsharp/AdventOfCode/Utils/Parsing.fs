@@ -1,5 +1,7 @@
 ﻿module Parsing
 
+open System
+
 let trd (_, _, c) = c
 
 let charToInt ch = (int ch) - (int '0')
@@ -42,3 +44,9 @@ let (|Prefix|_|) (p:string) (s:string) =
         Some(s.Substring(p.Length))
     else
         None
+
+let printGrid2d grid =
+    for y = 0 to (Array2D.length2 grid)-1 do 
+        let s = String(grid[0..(Array2D.length1 grid)-1, y])
+        printfn "%s" s
+    printfn ""
