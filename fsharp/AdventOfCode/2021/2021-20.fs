@@ -9,11 +9,13 @@ let cToB x = if x = '#' then 1 else 0
 let parseInput (input: string seq) =
     let referencePixels = 
         input
+        |> Seq.filter (fun x -> x <> "")
         |> Seq.head
         |> Seq.map cToB
         |> Array.ofSeq
     let image = 
         input
+        |> Seq.filter (fun x -> x <> "")
         |> Seq.tail
         |> Seq.map Array.ofSeq
         |> Array.ofSeq
@@ -64,6 +66,7 @@ let transformImage (reference:int array) ((infi, image):Image) =
     let transformed = Array2D.init ((Array2D.length2 image) + 2) ((Array2D.length1 image) + 2) (fun x y -> mapValue x y)
     Image(newInfinite, transformed)
 
+// Takes ~3 minutes to execute
 let execute (input : string seq) =
     printfn "Input count: %i" (Seq.length input)
 

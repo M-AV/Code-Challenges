@@ -10,7 +10,7 @@ let parseInput (input: string seq) =
     let code = input |> Seq.head |> List.ofSeq
     let map = 
         input 
-        |> Seq.skip 1
+        |> Seq.skip 2
         |> Seq.map (fun x -> x.Split(" -> "))
         |> Seq.map (fun x -> ((x[0][0], x[0][1]), x[1][0]))
         |> Map.ofSeq

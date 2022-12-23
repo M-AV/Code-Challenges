@@ -1,5 +1,8 @@
 ﻿module _2021_2
 
+open InputProvider
+open Xunit
+
 // Task 1: Calculate horizontal x depth position after a series of moves
 // Task 2: Some more complicated rules..
 
@@ -42,3 +45,9 @@ let execute (input : string seq) =
     let hor, depth, _ = part2
 
     (fst part1 * snd part1).ToString(), (hor * depth).ToString()
+
+[<Fact>]
+let ``Test``() =
+    let (part1, part2) = execute (getPuzzleInput "2021" "2" |> Async.RunSynchronously)
+    Assert.Equal("1507611", part1)
+    Assert.Equal("1880593125", part2)

@@ -1,5 +1,8 @@
 ﻿module _2021_9
 
+open InputProvider
+open Xunit
+
 // Task 1: Find low points in a number grid
 // Task 2: Find size of 3 biggest 'basins' and multiply them
 
@@ -85,3 +88,9 @@ let execute (input : string seq) =
         |> Seq.reduce (fun agg x -> agg * x)
 
     part1.ToString(), part2.ToString()
+
+[<Fact>]
+let ``Test``() =
+    let (part1, part2) = execute (getPuzzleInput "2021" "9" |> Async.RunSynchronously)
+    Assert.Equal("465", part1)
+    Assert.Equal("1269555", part2)

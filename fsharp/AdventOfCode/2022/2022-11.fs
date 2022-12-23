@@ -14,6 +14,7 @@ let parseInput (input : string seq) =
     let monkeys = 
         input 
         |> Seq.filter (fun x -> x <> "") 
+        |> Seq.map (fun x -> x.Trim())
         |> Seq.filter (fun x -> not (x.StartsWith "Monkey "))
         |> Seq.chunkBySize 5 
         |> Seq.map (fun x -> 

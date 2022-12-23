@@ -298,4 +298,4 @@ let execute (input : string seq) =
 let ``Test``() =
     let (part1, part2) = execute (getPuzzleInput "2022" "17" |> Async.RunSynchronously)
     Assert.Equal("3215", part1)
-    Assert.Equal("1575811208171", part2)
+    Assert.Equal("1575811209487", part2)

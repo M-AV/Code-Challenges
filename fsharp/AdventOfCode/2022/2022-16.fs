@@ -210,7 +210,7 @@ let execute (input : string seq) =
 
     part1.ToString(), part2.ToString()
 
-//[<Fact>] // Takes too long to run
+//[<Fact>] // Takes ~25 seconds
 let ``Test``() =
     let (part1, part2) = execute (getPuzzleInput "2022" "16" |> Async.RunSynchronously)
     Assert.Equal("2059", part1)

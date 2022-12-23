@@ -19,16 +19,11 @@ let private getInputFilePath year day =
 let private getInputUrl year day =
     new Uri(baseUrl, Path.Combine(year, "day", day, "input"))
 
-
-let private removeWhitespace lines = 
-    let a = lines 
-           |> Seq.map (fun (s:string) -> s.Trim())
-           //|> Seq.filter (fun s -> s.Length > 0) // This was removed in 2022, as a puzzle requires empty lines. Haven't checked if any of the 2021 challenges are now broken
-           |> Seq.toArray
-    if Array.last a = "" then
-        a |> Array.take(Array.length a - 1)
+let private removeLastEmptyLine lines =
+    if Array.last lines = "" then
+        lines |> Array.take(Array.length lines - 1)
     else
-        a
+        lines
 
 let private setToken token =
     if cookieContainer.Count = 0 then
@@ -44,7 +39,7 @@ let private downloadInputAsync year day token =
        let! result = httpClient.GetAsync(getInputUrl year day) |> Async.AwaitTask
        let! content = result.Content.ReadAsStringAsync() |> Async.AwaitTask
        let file = getInputFilePath year day
-       let splitLines = content.Split('\n') // |> removeWhitespace
+       let splitLines = content.Split('\n') |> removeLastEmptyLine
 
        if not(Directory.Exists(directory)) then
             Directory.CreateDirectory(directory) |> ignore

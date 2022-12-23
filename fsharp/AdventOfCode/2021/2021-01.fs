@@ -1,5 +1,8 @@
 ﻿module _2021_1
 
+open Xunit
+open InputProvider
+
 // Task 1: Count how many times we have a number higher than the previous number
 // Task 2: Count how many sums of moving 3-wise pairs are higher than previous (same number in 3 groups)
 
@@ -40,3 +43,9 @@ let execute (input : string seq) =
         |> Seq.length
 
     part1.ToString(), part2.ToString()
+
+[<Fact>]
+let ``Test``() =
+    let (part1, part2) = execute (getPuzzleInput "2021" "1" |> Async.RunSynchronously)
+    Assert.Equal("1228", part1)
+    Assert.Equal("1257", part2)

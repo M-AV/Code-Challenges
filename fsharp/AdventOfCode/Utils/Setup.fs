@@ -6,7 +6,7 @@ open System.IO
 let createFile year (day:int) (template:string) =
     let formattedDay = day.ToString("D2")
     let fileName = $"./../../../AdventOfCode/{year}/{year}-{formattedDay}.fs"
-    let modifiedTemplate = template.Replace("dd", day.ToString())
+    let modifiedTemplate = template.Replace("dd", day.ToString()).Replace("DD", day.ToString("D2"))
     let s = 
         match File.Exists(fileName) with 
         | true -> 
@@ -36,7 +36,7 @@ let setupYear () =
     printfn ""
 
     for i in 1 .. 25 do
-        printfn "    | (\"%s\", \"%i\") -> Some _%s_%i.execute" year i year i
+        printfn "    | (\"%s\", \"%i\") -> Some _%s_%s.execute" year i year (i.ToString("D2"))
 
     printfn ""
     printfn "Copy pasta the lines into the csproj file"

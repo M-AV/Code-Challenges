@@ -1,5 +1,8 @@
 ﻿module _2021_11
 
+open InputProvider
+open Xunit
+
 // Task 1: Simulate flashes and count how many after 100 iterations
 // Task 2: Find first iteration where all octopuses flash at the same time
 
@@ -93,3 +96,9 @@ let execute (input : string seq) =
     let part2 = iterations
 
     part1.ToString(), part2.ToString()
+
+[<Fact>]
+let ``Test``() =
+    let (part1, part2) = execute (getPuzzleInput "2021" "11" |> Async.RunSynchronously)
+    Assert.Equal("1640", part1)
+    Assert.Equal("312", part2)

@@ -64,6 +64,7 @@ let isEntry roomHallwayIdx =
 let parseInput (input: string seq) =
     let filtered = 
         input
+        |> Seq.map (fun x -> x.Trim())
         |> Seq.filter (fun x -> x |> Seq.exists (fun char -> char <> '#'))
     let graph =
         filtered

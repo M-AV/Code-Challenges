@@ -1,5 +1,8 @@
 ﻿module _2021_10
 
+open InputProvider
+open Xunit
+
 // Task 1: Ignore incomplete lines, find first invalid paranthesis and calculate score. Sum scores for result
 // Task 2: Ignore corrupt lines, find missing brackets and calc score. Find middle score.
 
@@ -75,3 +78,9 @@ let execute (input : string seq) =
     let part2 = points[points.Length / 2]
 
     part1.ToString(), part2.ToString()
+
+[<Fact>]
+let ``Test``() =
+    let (part1, part2) = execute (getPuzzleInput "2021" "10" |> Async.RunSynchronously)
+    Assert.Equal("318081", part1)
+    Assert.Equal("4361305341", part2)

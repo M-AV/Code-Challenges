@@ -1,4 +1,4 @@
-﻿module _yyyy_dd
+﻿module _yyyy_DD
 
 open InputProvider
 open Calculations

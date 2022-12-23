@@ -1,6 +1,8 @@
 ﻿module _2021_3
 
 open System
+open InputProvider
+open Xunit
 
 // Task 1: Merge bits by most common bit in a given position and calculate resulting int value and negated value (you don't have 32 bits)
 // Task 2: 
@@ -107,3 +109,9 @@ let execute (input : string seq) =
     let part2 = oxygenRating * scrubbingRating
 
     part1.ToString(), part2.ToString()
+
+[<Fact>]
+let ``Test``() =
+    let (part1, part2) = execute (getPuzzleInput "2021" "3" |> Async.RunSynchronously)
+    Assert.Equal("3969000", part1)
+    Assert.Equal("4267809", part2)

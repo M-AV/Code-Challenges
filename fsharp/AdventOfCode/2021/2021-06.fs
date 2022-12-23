@@ -1,5 +1,8 @@
 ﻿module _2021_6
 
+open InputProvider
+open Xunit
+
 // Task 1: Count multiplying fish after 80 days
 // Task 2: Count them after 256 days (exponential so naive solution wont work)
 
@@ -40,3 +43,9 @@ let execute (input : string seq) =
     let part2 = calcStateAfterDays initialState 256 |> List.map snd |> List.sum
 
     part1.ToString(), part2.ToString()
+
+[<Fact>]
+let ``Test``() =
+    let (part1, part2) = execute (getPuzzleInput "2021" "6" |> Async.RunSynchronously)
+    Assert.Equal("365862", part1)
+    Assert.Equal("1653250886439", part2)

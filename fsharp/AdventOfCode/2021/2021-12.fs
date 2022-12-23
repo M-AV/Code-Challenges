@@ -2,6 +2,7 @@
 
 open Xunit
 open System
+open InputProvider
 
 // Task 1: Find number of unique paths from start to end (we can visit big letters more than once)
 // Task 2: Find number of paths if we can visit a single small cave twice 
@@ -88,6 +89,13 @@ let execute (input : string seq) =
 
     part1.ToString(), part2.ToString()
 
+
+
+[<Fact>]
+let ``Test``() =
+    let (part1, part2) = execute (getPuzzleInput "2021" "12" |> Async.RunSynchronously)
+    Assert.Equal("4970", part1)
+    Assert.Equal("137948", part2)
 
 [<Fact>]
 let ``Example 1``() =

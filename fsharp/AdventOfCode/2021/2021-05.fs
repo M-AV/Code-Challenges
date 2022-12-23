@@ -1,9 +1,13 @@
 ﻿module _2021_5
 
 open System
+open InputProvider
+open Xunit
 
 // Task 1: Find number of points were a horizontal/vertical line overlaps
 // Task 2: Include diagonal lines in calc
+
+// UPDATE 2022: Changed some 'seq' to 'list' in some places to speed it up a bit (~2.5 seconds to ~0.5 seconds)
 type Point = 
     struct 
         val X: int
@@ -86,11 +90,11 @@ let addLineToMap (line:Point[], map:Map<Point, int>) =
 
     result
         
-let solvePart1WithMap (lines:Point[] seq) =
-    let rec addLinesToMap (lines:Point[] seq, map) =
+let solvePart1WithMap (lines:Point[] list) =
+    let rec addLinesToMap (lines:Point[] list, map) =
         match lines with 
         | x when Seq.isEmpty x -> map
-        | _ -> addLinesToMap ((Seq.tail lines), (addLineToMap ((Seq.head lines), map)))
+        | _ -> addLinesToMap ((List.tail lines), (addLineToMap ((List.head lines), map)))
 
     let positionCount = addLinesToMap (lines, (Map []))
 
@@ -120,12 +124,12 @@ let solvePart1WithCountBy (lines:(Point * Point) seq) =
 let execute (input : string seq) =
     printfn "Input count: %i" (Seq.length input)
 
-    let parsed = input |> Seq.map parseLine
+    let parsed = input |> Seq.map parseLine |> List.ofSeq
 
     // Part 1
     let part1Lines = 
         parsed |>
-        Seq.filter (fun x -> x[0].X = x[1].X || x[0].Y = x[1].Y)
+        List.filter (fun x -> x[0].X = x[1].X || x[0].Y = x[1].Y)
     let overlapCount = solvePart1WithMap part1Lines
 
     //let parsed = input |> Seq.map parseLine2
@@ -139,3 +143,9 @@ let execute (input : string seq) =
     let part2 = solvePart1WithMap parsed
 
     part1.ToString(), part2.ToString()
+
+[<Fact>]
+let ``Test``() =
+    let (part1, part2) = execute (getPuzzleInput "2021" "5" |> Async.RunSynchronously)
+    Assert.Equal("4826", part1)
+    Assert.Equal("16793", part2)

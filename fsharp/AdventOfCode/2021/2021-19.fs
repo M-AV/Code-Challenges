@@ -20,6 +20,7 @@ let parseInput (input: string seq) =
     let i = ref 0
     let groups = 
         input
+        |> Seq.filter (fun x -> x <> "")
         |> Seq.groupBy (fun x -> 
             if x.StartsWith("---") then 
                 i.Value <- i.Value + 1
@@ -134,6 +135,7 @@ let findOverlap (first:Set<Beacon>) (second:Set<Beacon>) =
         
     (hasMatch, set, beaconPos)
 
+// Takes a couple of minutes to execute
 let execute (input : string seq) =
     printfn "Input count: %i" (Seq.length input)
 

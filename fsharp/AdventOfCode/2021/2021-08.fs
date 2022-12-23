@@ -1,5 +1,8 @@
 ﻿module _2021_8
 
+open InputProvider
+open Xunit
+
 // Task 1: Count words in output with length 2, 3, 4 or 7
 // Task 2: Decode the 7 segment displays and add up all the final 4 digit numbers
 
@@ -75,3 +78,9 @@ let execute (input : string seq) =
     let part2 = parsedForPart2
 
     part1.ToString(), part2.ToString()
+    
+[<Fact>]
+let ``Test``() =
+    let (part1, part2) = execute (getPuzzleInput "2021" "8" |> Async.RunSynchronously)
+    Assert.Equal("362", part1)
+    Assert.Equal("1020159", part2)

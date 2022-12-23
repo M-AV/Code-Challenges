@@ -95,34 +95,40 @@ let private solvers year day =
     | ("2022", "25") -> Some _2022_25.execute
     | _ -> None
 
-let printResult result =
-    printfn "Solution:"
-    printfn "  Part 1: %s \r\n  Part 2: %s" (fst result) (snd result)
-
-let solvePuzzle (argv:string array) =
-    let year = if argv.Length > 0 then argv.[0] else "2022"
-    let day = if argv.Length > 1 then argv.[1] else "22"
-
-    printfn "## Puzzle %s/12-%s" day year
-    printfn ""
-
+let solveDay year day =
     let solver = solvers year day
     let stopwatch = Stopwatch.StartNew();
 
     let input = getPuzzleInput year day |> Async.RunSynchronously
 
-    match solver with 
-        | Some s -> input |> s |> printResult
-        | None -> printfn "No solver for specified puzzle"
+    let res = 
+        match solver with 
+        | Some s -> input |> s
+        | None -> "No solver for puzzle", ""
     stopwatch.Stop()
+
+    fst res, snd res, stopwatch.Elapsed
+    
+
+let solvePuzzle (argv:string array) =
+    let year = if argv.Length > 0 then argv.[0] else "2021"
+    let day = if argv.Length > 1 then argv.[1] else "25"
+
+    printfn "## Puzzle %s/12-%s" day year
     printfn ""
-    printf "Time spent: %s" (stopwatch.Elapsed.ToString())
+    
+    let (p1, p2, time) = solveDay year day
+    
+    printfn "Solution:"
+    printfn "  Part 1: %s \r\n  Part 2: %s" p1 p2
+    printfn "  Time spent: %s" (time.ToString())
 
     0
 
 [<EntryPoint>]
-let main argv = 
+let main argv =  
     //Setup.setupYear()
     solvePuzzle argv
+    
 
     
