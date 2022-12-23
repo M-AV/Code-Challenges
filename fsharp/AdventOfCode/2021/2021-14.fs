@@ -128,6 +128,7 @@ let execute (input : string seq) =
 let ``Example``() =
     let input = [ 
         "NNCB";
+        "";
         "CH -> B";
         "HH -> N";
         "CB -> H";
