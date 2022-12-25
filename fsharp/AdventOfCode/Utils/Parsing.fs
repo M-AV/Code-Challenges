@@ -50,3 +50,11 @@ let printGrid2d grid =
         let s = String(grid[0..(Array2D.length1 grid)-1, y])
         printfn "%s" s
     printfn ""
+
+let printGrid2d_int grid =
+    for y = 0 to (Array2D.length2 grid)-1 do 
+        for x = 0 to (Array2D.length1 grid)-1 do
+            let s = (int grid[x,y]).ToString()
+            printf "%s" s
+        printfn ""
+    printfn ""
