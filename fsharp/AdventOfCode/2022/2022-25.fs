@@ -11,6 +11,7 @@ open Xunit
 let parseInput (input : string seq) = 
     input |> List.ofSeq
 
+// To parse we simply iterate through the values and apply their corresponding value to an Int64
 let parseSNAFU (number:string) =
     let rec parse idx (idxVal:int64) (res:int64) =
         if idx = -1 then res
@@ -25,6 +26,13 @@ let parseSNAFU (number:string) =
 
     parse (number.Length-1) 1L 0L
 
+// We observe that the highest value that can be represented by a SNAFU number with N digits
+// is 5^(N+1) / 2 (rounded down).
+// To turn an integer into a SNAFU number we
+// 1. Find length of eventual SNAFU number
+// 2. Recursively iterate through each index in the result (from high value to low)
+//    - Based on the size of the remaining value, put in the appropriate digit
+//    - Calculate the new 'remaining' value and go to the next digit
 let intToSNAFU (number:int64) =
     let rec findLength (idx:int) =
         let nextIdx = idx+1
