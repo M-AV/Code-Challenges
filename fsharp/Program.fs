@@ -112,7 +112,7 @@ let solveDay year day =
 
 let solvePuzzle (argv:string array) =
     let year = if argv.Length > 0 then argv.[0] else "2022"
-    let day = if argv.Length > 1 then argv.[1] else "24"
+    let day = if argv.Length > 1 then argv.[1] else "25"
 
     printfn "## Puzzle %s/12-%s" day year
     printfn ""
