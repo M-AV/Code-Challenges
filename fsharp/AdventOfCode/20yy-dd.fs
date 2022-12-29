@@ -19,8 +19,6 @@ let part2 input =
     0
 
 let execute (input : string seq) =
-    printfn "Input count: %i" (Seq.length input)
-
     let parsed = parseInput input
     printfn "%A" parsed
 
