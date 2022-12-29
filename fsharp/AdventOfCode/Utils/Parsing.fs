@@ -5,6 +5,7 @@ open System
 let trd (_, _, c) = c
 
 let charToInt ch = (int ch) - (int '0')
+let intToChar i = char (i + (int '0'))
 let ints (input:string) = 
     input |> Seq.map charToInt |> Array.ofSeq
 let parseArray2d (input: string seq) =
@@ -39,12 +40,6 @@ let batchesOf2 input =
     |> Seq.map (Array.ofSeq)
     |> Seq.map (fun x -> x[0],x[1])
 
-let (|Prefix|_|) (p:string) (s:string) =
-    if s.StartsWith(p) then
-        Some(s.Substring(p.Length))
-    else
-        None
-
 let printGrid2d grid =
     for y = 0 to (Array2D.length2 grid)-1 do 
         let s = String(grid[0..(Array2D.length1 grid)-1, y])
@@ -58,3 +53,10 @@ let printGrid2d_int grid =
             printf "%s" s
         printfn ""
     printfn ""
+
+
+let (|Prefix|_|) (p:string) (s:string) =
+    if s.StartsWith(p) then
+        Some(s.Substring(p.Length))
+    else
+        None
