@@ -37,7 +37,7 @@ let intToSNAFU (number:int64) =
     let rec findLength (idx:int) =
         let nextIdx = idx+1
         let base5 = int64 (Math.Pow(5, nextIdx))
-        if (number <= (base5 / 2L)) then
+        if ((abs number) <= (base5 / 2L)) then
             idx
         else
             findLength nextIdx
@@ -87,7 +87,7 @@ let execute (input : string seq) =
 
 [<Fact>]
 let ``SnafuTest``() =
-    Assert.Equal("=2", intToSNAFU(-3))
+    Assert.Equal("-2", intToSNAFU(-3))
     Assert.Equal("1", intToSNAFU(1))
     Assert.Equal("2", intToSNAFU(2))
     Assert.Equal("1=", intToSNAFU(3))
