@@ -93,6 +93,33 @@ let private solvers year day =
     | ("2022", "23") -> Some _2022_23.execute
     | ("2022", "24") -> Some _2022_24.execute
     | ("2022", "25") -> Some _2022_25.execute
+
+    | ("2023", "1") -> Some _2023_01.execute
+    | ("2023", "2") -> Some _2023_02.execute
+    | ("2023", "3") -> Some _2023_03.execute
+    | ("2023", "4") -> Some _2023_04.execute
+    | ("2023", "5") -> Some _2023_05.execute
+    | ("2023", "6") -> Some _2023_06.execute
+    | ("2023", "7") -> Some _2023_07.execute
+    | ("2023", "8") -> Some _2023_08.execute
+    | ("2023", "9") -> Some _2023_09.execute
+    | ("2023", "10") -> Some _2023_10.execute
+    | ("2023", "11") -> Some _2023_11.execute
+    | ("2023", "12") -> Some _2023_12.execute
+    | ("2023", "13") -> Some _2023_13.execute
+    | ("2023", "14") -> Some _2023_14.execute
+    | ("2023", "15") -> Some _2023_15.execute
+    | ("2023", "16") -> Some _2023_16.execute
+    | ("2023", "17") -> Some _2023_17.execute
+    | ("2023", "18") -> Some _2023_18.execute
+    | ("2023", "19") -> Some _2023_19.execute
+    | ("2023", "20") -> Some _2023_20.execute
+    | ("2023", "21") -> Some _2023_21.execute
+    | ("2023", "22") -> Some _2023_22.execute
+    | ("2023", "23") -> Some _2023_23.execute
+    | ("2023", "24") -> Some _2023_24.execute
+    | ("2023", "25") -> Some _2023_25.execute
+
     | _ -> None
 
 let solveDay year day =
@@ -112,7 +139,7 @@ let solveDay year day =
 
 let solvePuzzle (argv:string array) =
     let year = if argv.Length > 0 then argv.[0] else "2023"
-    let day = if argv.Length > 1 then argv.[1] else "01"
+    let day = if argv.Length > 1 then argv.[1] else "1"
 
     printfn "## Puzzle %s/12-%s" day year
     printfn ""
