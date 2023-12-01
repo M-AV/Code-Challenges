@@ -148,9 +148,7 @@ let part1 (input:string) (iterations:Int64) =
         let mutable pos = 2, gridHeight + 3
         while (not settled) do
             // Simulate wind
-            let mutable newPos = match input[windIdx] with
-                | '<' -> (fst pos)-1, snd pos
-                | '>' -> (fst pos)+1, snd pos
+            let mutable newPos = match input[windIdx] with | '<' -> (fst pos)-1, snd pos | '>' -> (fst pos)+1, snd pos
                 
             if (verify grid brick newPos) then
                 pos <- newPos
@@ -226,9 +224,7 @@ let part2 (input:string) =
 
         while (not settled) do
             // Simulate wind
-            let mutable newPos = match input[windIdx] with
-                | '<' -> (fst pos)-1, snd pos
-                | '>' -> (fst pos)+1, snd pos
+            let mutable newPos = match input[windIdx] with | '<' -> (fst pos)-1, snd pos | '>' -> (fst pos)+1, snd pos
                 
             if (verify grid brick newPos) then
                 pos <- newPos

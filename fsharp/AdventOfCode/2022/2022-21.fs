@@ -1,4 +1,4 @@
-    module _2022_21
+module _2022_21
 
 open InputProvider
 open Calculations
