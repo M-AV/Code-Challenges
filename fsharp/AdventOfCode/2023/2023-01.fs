@@ -55,7 +55,6 @@ let part2 input = input |> Seq.map parseLine |> Seq.sum
         
 
 let execute (input : string seq) =
-
     let part1 = part1 input
 
     let part2 = part2 input
