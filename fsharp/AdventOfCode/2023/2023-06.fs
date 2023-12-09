@@ -6,30 +6,48 @@ open Parsing
 open System
 open Xunit
 
-// Task 1: 
-// Task 2: 
+let parseInput_part1 (input : string seq) = 
+    let numbers = 
+        input
+        |> Seq.map (fun x -> x.Split ':')
+        |> Seq.map (fun x -> x[1].Trim())
+        |> Seq.map (fun x -> x.Split ' ' |> Array.filter (fun x -> x.Length > 0) |> Array.map int64)
+        |> Array.ofSeq
 
-let parseInput (input : string seq) = 
+    Array.zip numbers[0] numbers[1]
+
+let parseInput_part2 (input : string seq) = 
+    let numbers = 
+        input
+        |> Seq.map (fun x -> x.Split ':')
+        |> Seq.map (fun x -> x[1].Trim())
+        |> Seq.map (fun x -> x.Replace(" ", ""))
+        |> Seq.map (fun x -> x.Split ' ' |> Array.filter (fun x -> x.Length > 0) |> Array.map int64)
+        |> Array.ofSeq
+
+    Array.zip numbers[0] numbers[1]
+
+
+let solve (input:(int64 * int64) array) =
+    let calculate (time, distance) = 
+        [1L .. (time-1L)]
+        |> List.map (fun x -> x * (time - x))
+        |> List.filter (fun x -> x > distance)
+        |> List.length
+    
     input
-
-let part1 input =
-    0
-
-let part2 input =
-    0
+    |> Array.map calculate
+    |> Array.fold (fun x i -> x * i) 1
 
 let execute (input : string seq) =
-    let parsed = parseInput input
-    printfn "%A" parsed
+    let part1_res = solve (parseInput_part1 input)
 
-    let part1 = part1 parsed
+    let part2_res = solve (parseInput_part2 input)
 
-    let part2 = part2 parsed
+    part1_res.ToString(), part2_res.ToString()
 
-    part1.ToString(), part2.ToString()
-
-//[<Fact>]
+[<Fact>] // Takes ~10 seconds for part 2
 let ``Test``() =
     let (part1, part2) = execute (getPuzzleInput "2023" "6" |> Async.RunSynchronously)
-    Assert.Equal("N/A", part1)
-    Assert.Equal("N/A", part2)
+    Assert.Equal("449550", part1)
+    Assert.Equal("28360140", part2)
