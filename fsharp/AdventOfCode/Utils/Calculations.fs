@@ -27,3 +27,15 @@ let rec powerset =
    | (x::xs) -> 
       let xss = powerset xs 
       List.map (fun xs' -> x::xs') xss @ xss
+
+// Repeat provided items forever
+let repeat items =
+    seq { while true do yield! items }
+
+let rec gcd a b =
+    if b = 0L then a
+    else gcd b (a % b)
+
+/// Least Common Multiple of a list of numbers.
+let lcm numbers =
+    numbers |> List.fold (fun acc x -> acc * x / (gcd acc x)) 1L
