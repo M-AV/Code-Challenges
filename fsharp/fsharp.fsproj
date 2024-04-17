@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+	<Compile Include="AdventOfCode\Utils\Other.fs" />
 	<Compile Include="InputProvider.fs" />
 
 	<Compile Include="AdventOfCode\Utils\Calculations.fs" />

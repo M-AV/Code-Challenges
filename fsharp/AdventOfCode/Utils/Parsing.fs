@@ -8,6 +8,29 @@ let charToInt ch = (int ch) - (int '0')
 let intToChar i = char (i + (int '0'))
 let ints (input:string) = 
     input |> Seq.map charToInt |> Array.ofSeq
+
+let addPaddingToExisting_char (paddingVal:char) (grid:char array2d) =
+    let rows = Array2D.length1 grid
+    let cols = Array2D.length2 grid
+    let newArray = Array2D.init (rows + 2) (cols + 2) (fun x y -> paddingVal)
+
+    for i in 0 .. rows - 1 do
+        for j in 0 .. cols - 1 do
+            newArray[i + 1,j + 1] <- grid[i,j]
+    
+    newArray
+
+let addPaddingToExisting_int (paddingVal:int) (grid:int array2d) =
+    let rows = Array2D.length1 grid
+    let cols = Array2D.length2 grid
+    let newArray = Array2D.init (rows + 2) (cols + 2) (fun x y -> paddingVal)
+
+    for i in 0 .. rows - 1 do
+        for j in 0 .. cols - 1 do
+            newArray[i + 1,j + 1] <- grid[i,j]
+    
+    newArray
+
 let parseArray2d (input: string seq) =
     let arr = 
         input
@@ -19,15 +42,9 @@ let parseArray2d (input: string seq) =
 /// The extra padding can eliminate boundary checks for some challenges, making the code simpler.
 let parsePadded2dArray (paddingVal:char) (input:string seq) =
     let parsed = parseArray2d input
-    let rows = Array2D.length1 parsed
-    let cols = Array2D.length2 parsed
-    let newArray = Array2D.init (rows + 2) (cols + 2) (fun x y -> paddingVal)
+    addPaddingToExisting_char paddingVal parsed
 
-    for i in 0 .. rows - 1 do
-        for j in 0 .. cols - 1 do
-            newArray[i + 1,j + 1] <- parsed[i,j]
-    
-    newArray
+
 
 // Logic is fairly simple, but I found this while searching for a built in way: https://stackoverflow.com/a/49891028/1401257
 let find2d needle (arr: char[,]) =
@@ -60,14 +77,49 @@ let printGrid2d grid =
         printfn "%s" s
     printfn ""
 
+
 let printGrid2d_int grid =
-    for y = 0 to (Array2D.length2 grid)-1 do 
-        for x = 0 to (Array2D.length1 grid)-1 do
-            let s = (int grid[x,y]).ToString()
-            printf "%s" s
+    let mutable maxLen = 0       
+    for x in 0 .. (Array2D.length1 grid) - 1 do
+        for y in 0 .. (Array2D.length2 grid) - 1 do
+            let len = (grid[x, y].ToString()).Length
+            if len > maxLen then maxLen <- len
+        
+
+    for y in 0 .. (Array2D.length2 grid) - 1 do 
+        for x in 0 .. (Array2D.length1 grid) - 1 do
+            let formatted = Printf.sprintf "%-*d" maxLen (int grid[x, y])
+            printf "%s " formatted
         printfn ""
     printfn ""
 
+let printGrid2d_color locsToColor locsToColor2 locsToColor3 locsToColor4 grid =
+    let set1 = locsToColor |> Set.ofList
+    let set2 = locsToColor2 |> Set.ofList
+    let set3 = locsToColor3 |> Set.ofList
+    let set4 = locsToColor4 |> Set.ofList
+
+    let mutable colors = [ConsoleColor.Red; ConsoleColor.Green; ConsoleColor.Gray; ConsoleColor.DarkRed]
+
+    for y = 0 to (Array2D.length2 grid)-1 do 
+        for x = 0 to (Array2D.length1 grid)-1 do
+            if set1 |> Set.contains (x,y) then
+                Console.ForegroundColor <- ConsoleColor.Red
+                printf "%c" grid[x,y]
+            else if set2 |> Set.contains (x,y) then
+                Console.ForegroundColor <- ConsoleColor.Green
+                printf "%c" grid[x,y]
+            else if set3 |> Set.contains (x,y) then
+                Console.ForegroundColor <- ConsoleColor.DarkRed
+                printf "%c" grid[x,y]
+            else if set4 |> Set.contains (x,y) then
+                Console.ForegroundColor <- ConsoleColor.DarkGray
+                printf "%c" grid[x,y]
+            else
+                Console.ForegroundColor <- ConsoleColor.White
+                printf "%c" grid[x,y]
+        printfn ""
+    Console.ResetColor()
 
 let (|Prefix|_|) (p:string) (s:string) =
     if s.StartsWith(p) then
