@@ -1,0 +1,9 @@
+[package]
+name = "advent_of_code"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+reqwest = { version = "*", features = ["blocking", "cookies"] }
+itertools = "*"
