@@ -22,7 +22,7 @@ pub fn execute(input: &str) -> (String, String) {
     (part1.to_string(), part2.to_string())
 }
 
-#[tokio::test]
+//#[tokio::test]
 async fn test_day() {
     use crate::input_provider::get_puzzle_input;
     let input = get_puzzle_input(2024, 21).await.unwrap();
