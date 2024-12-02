@@ -9,6 +9,7 @@ pub fn get_solver(year: i32, day: i32) -> Option<fn(&str) -> (String, String)> {
     match (year, day) {
         (2020, 02) => Some(y2020::day02::execute),
         (2024, 01) => Some(y2024::day01::execute),
+        (2024, 02) => Some(y2024::day02::execute),
         _ => None
     }
 }
@@ -16,7 +17,7 @@ pub fn get_solver(year: i32, day: i32) -> Option<fn(&str) -> (String, String)> {
 #[tokio::main]
 async fn main() {
     let year = 2024;
-    let day =  01;
+    let day =  02;
 
     println!("## Puzzle {}/12-{}", year, day);
 
