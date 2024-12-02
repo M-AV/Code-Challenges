@@ -24,6 +24,7 @@ pub fn execute(input: &str) -> (String, String) {
 
 #[tokio::test]
 async fn test_day() {
+    use crate::input_provider::get_puzzle_input;
     let input = get_puzzle_input(2024, x).await.unwrap();
     let (part1, part2) = execute (&input);
 

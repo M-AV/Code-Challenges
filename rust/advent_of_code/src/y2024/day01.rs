@@ -3,8 +3,6 @@
 
 use itertools::Itertools;
 
-use crate::input_provider::get_puzzle_input;
-
 // We parse the input into two vectors that we can work with later
 fn parse_input(input: &str) -> (Vec<i32>, Vec<i32>) {
     let lines: Vec<(i32, i32)> = input
@@ -75,6 +73,7 @@ pub fn execute(input: &str) -> (String, String) {
 
 #[tokio::test]
 async fn test_day() {
+    use crate::input_provider::get_puzzle_input;
     let input = get_puzzle_input(2024, 01).await.unwrap();
     let (part1, part2) = execute (&input);
 
