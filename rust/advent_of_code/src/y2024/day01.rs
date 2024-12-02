@@ -3,6 +3,8 @@
 
 use itertools::Itertools;
 
+use crate::input_provider::get_puzzle_input;
+
 // We parse the input into two vectors that we can work with later
 fn parse_input(input: &str) -> (Vec<i32>, Vec<i32>) {
     let lines: Vec<(i32, i32)> = input
@@ -71,13 +73,11 @@ pub fn execute(input: &str) -> (String, String) {
     (part1.to_string(), part2.to_string())
 }
 
-// mod tests {
-//     use super::*;
+#[tokio::test]
+async fn test_day() {
+    let input = get_puzzle_input(2024, 01).await.unwrap();
+    let (part1, part2) = execute (&input);
 
-//     #[test]
-//     fn test_execute() {
-//         let (part1, part2) = execute (get_puzzle_input(2020, 02));
-//         let result = part_one(&advent_of_code::template::read_file("examples", DAY));
-//         assert_eq!(result, None);
-//     }
-// }
+    assert_eq!("1938424", part1);
+    assert_eq!("22014209", part2);
+}

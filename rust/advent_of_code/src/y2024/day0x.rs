@@ -21,13 +21,12 @@ pub fn execute(input: &str) -> (String, String) {
 
     (part1.to_string(), part2.to_string())
 }
-// mod tests {
-//     use super::*;
 
-//     #[test]
-//     fn test_execute() {
-//         let (part1, part2) = execute (get_puzzle_input(2020, 02));
-//         let result = part_one(&advent_of_code::template::read_file("examples", DAY));
-//         assert_eq!(result, None);
-//     }
-// }
+#[tokio::test]
+async fn test_day() {
+    let input = get_puzzle_input(2024, x).await.unwrap();
+    let (part1, part2) = execute (&input);
+
+    assert_eq!("?", part1);
+    assert_eq!("?", part2);
+}
