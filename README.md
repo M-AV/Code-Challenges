@@ -3,6 +3,10 @@ Occasionally, when I have nothing better to do, I spend some time solving code c
 
 What challenges are in here? 
 
- - In 2021 I started doing some [Advent of Code](https://adventofcode.com) in F#, mostly to learn the language. I have tried to solve all of the challenges in [2021](fsharp/AdventOfCode/2021/) and [2022](fsharp/AdventOfCode/2022/) in F#. A few also have a solution in C#.
+ - **Advent of Code**: 
+    In 2021 I started doing some [Advent of Code](https://adventofcode.com) in F#, mostly to learn the language. Here is a quick overview: 
+    - F#: [2021](fsharp/AdventOfCode/2021/), [2022](fsharp/AdventOfCode/2022/), [2023](fsharp/AdventOfCode/2023/) + A few solutions from some of the earlier years
+    - Rust: [2024](rust/advent_of_code/src/y2024/)
+    - C#: Only a few days implemented, mostly to assist in debugging a solution from a different language.
 
- - Many years ago I did some CodeEval challenges. The site seems to be gone though. 
+ - **CodeEval**: Many years ago I did some CodeEval challenges. The site seems to be gone though. 

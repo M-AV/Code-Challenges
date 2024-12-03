@@ -4,6 +4,8 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 *authtoken.txt
+fsharp/Inputs/*
+rust/advent_of_code/inputs/*
 
 # User-specific files
 *.rsuser
