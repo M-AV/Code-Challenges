@@ -1,8 +1,6 @@
 #![allow(dead_code)]
 #![allow(unused_variables)]
 
-use itertools::Itertools;
-
 pub fn part_one(input: &str) -> i32 {
     0
 }

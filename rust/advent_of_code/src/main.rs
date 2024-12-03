@@ -1,5 +1,5 @@
 #![allow(dead_code)]
-use std::{str::FromStr, time::Duration};
+use std::time::Duration;
 
 mod input_provider;
 mod y2020;
@@ -44,7 +44,7 @@ async fn main() {
     // return;
 
     let year = 2024;
-    let day =  02;
+    let day =  03;
 
     println!("## Puzzle {}/12-{}", year, day);
 
