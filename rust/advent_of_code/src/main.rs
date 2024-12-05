@@ -40,12 +40,13 @@ pub fn get_solver(year: i32, day: i32) -> Option<fn(&str) -> (String, String)> {
 }
 
 #[tokio::main]
+
 async fn main() {
     // setup::setup_year();
     // return;
 
     let year = 2024;
-    let day =  04;
+    let day =  05;
 
     println!("## Puzzle {}/12-{}", year, day);
 

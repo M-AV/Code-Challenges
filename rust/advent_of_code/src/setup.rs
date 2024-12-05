@@ -1,9 +1,7 @@
-use std::{fs::{self, File}, io::{self, Write}, path::Path};
+use std::{fs::{self, File}, io::Write, path::Path};
 
 pub fn setup_year() {
-    let mut buffer = String::new();
-
-    buffer = "2024".to_string();
+    let buffer = "2024".to_string();
 
     let template = fs::read_to_string("src/day0x.rs").unwrap();
     
