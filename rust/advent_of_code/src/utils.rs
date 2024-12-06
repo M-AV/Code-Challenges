@@ -35,3 +35,18 @@ pub fn add_padding_to_2d_vec<T>(grid: &Vec<Vec<T>>, value: T) -> Vec<Vec<T>> whe
 
     new_grid
 }
+
+pub fn find_first_index<T>(grid: &Vec<Vec<T>>, value: T) -> (usize, usize) where T : PartialEq, T : Clone {
+    let mut current_idx = (0,0);
+    'outer: for x in 0 .. grid.len() {
+        for y in 0..grid[0].len() {
+            let item = grid[x][y].clone();
+            if item == value {
+                current_idx = (x,y);
+                break 'outer;
+            }
+
+        }
+    }
+    current_idx
+}
