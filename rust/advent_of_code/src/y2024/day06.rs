@@ -2,11 +2,11 @@
 #![allow(unused_variables)]
 #![allow(unused_imports)]
 
-use std::{collections::HashSet, ops::Index};
+use std::{collections::{HashMap, HashSet}, ops::Index};
 
 use itertools::Itertools;
 
-use crate::utils;
+use crate::utils::{self, print_2d_vec};
 
 fn parse_input(input: &str) -> Vec<Vec<char>> {
     let parsed = utils::parse_2d_vec(input);
@@ -35,41 +35,90 @@ fn next_direction(dir: char) -> char {
     }
 }
 
-/// Idea is simple, just simulate the steps of the guard until he exits the map
-pub fn part_one(input: &Vec<Vec<char>>) -> usize {
+fn simulate_steps(input: &Vec<Vec<char>>) -> (HashSet<(usize, usize)>, bool) {
+    let mut grid: Vec<Vec<char>> = input.clone();
     let mut visited_locs:HashSet<(usize, usize)> = HashSet::new();
+    let mut loc_dir_map:HashMap<(usize, usize), i32> = HashMap::new();
 
     let mut current_direction = '^';
-    let mut current_idx = utils::find_first_index(&input, current_direction);
+    let mut current_idx = utils::find_first_index(&grid, current_direction);
+    let first_index = current_idx;
+    let mut in_loop = false;
 
     loop {
         let (x_next, y_next) = next_loc(current_direction, current_idx);
         visited_locs.insert(current_idx);
+        *loc_dir_map.entry(current_idx).or_insert(0) += 1;
 
-        // Here I assume we will eventually reach an edge and the guy is not walking in circles!
-        match input[x_next][y_next] {
+        // Problem is sneaky enough to have loops where you traverse all the same locations in a 
+        // different direction, before reaching them again. Hence a simple check for "Did I go in the 
+        // same direction last time I was here" is not good enough.
+        // Super lazy approach. If I see the same loc more than 4 times, I must be going in a direction
+        // I already did once, hence I'm in a loop.
+        // I should really figure out how to make nested collections. :D
+        if loc_dir_map[&current_idx] > 4 {
+            in_loop = true;
+            break;
+        }
+
+        grid[current_idx.0][current_idx.1] = current_direction;
+
+        match grid[x_next][y_next] {
             '!' => break,
             '#' => current_direction = next_direction(current_direction),
-            '.' | '^' => current_idx = next_loc(current_direction, current_idx),
+            '^' | 'v' | '<' | '>' if grid[x_next][y_next] == current_direction => {
+                in_loop = true;
+                break;
+            },
+            '.' | '^' | 'v' | '<' | '>' => current_idx = (x_next, y_next),
             _ => panic!("Time to debug")
         }
     }
 
-    visited_locs.len()
+    (visited_locs, in_loop)
+
 }
 
-// Now we have to consider loops, so instead 
+/// Idea is simple, just simulate the steps of the guard until he exits the map
+pub fn part_one(input: &Vec<Vec<char>>) -> usize {
+    let (steps, is_in_loop) = simulate_steps(input);
+
+    steps.len()
+}
+
+/// Now we have to consider loops.. To make the guard turn, the obstacle should be placed somewhere
+/// on the initial path. Anywhere else, shouldn't affect him
 pub fn part_two(input: &Vec<Vec<char>>) -> i32 {
-    0
+    let starting_pos = utils::find_first_index(input, '^');
+
+    let (mut steps, _) = simulate_steps(input);
+    steps.remove(&starting_pos);
+
+
+    let mut loop_counter = 0;
+
+    for (x,y) in steps {
+        let mut cloned_grid = input.clone();
+        cloned_grid[x][y] = '#';
+
+        let (_, in_loop) = simulate_steps(&cloned_grid);
+        if in_loop {
+            loop_counter = loop_counter + 1;
+        }
+    }
+
+
+    loop_counter
 }
 
 pub fn execute(input: &str) -> (String, String) {
     
     let parsed = parse_input(input);
 
-    utils::print_2d_vec(&parsed);
-
     let part1 = part_one(&parsed);
+
+    println!("{:?}", part1);
+
     let part2 = part_two(&parsed);
 
     (part1.to_string(), part2.to_string())
@@ -82,5 +131,5 @@ async fn test_day() {
     let (part1, part2) = execute (&input);
 
     assert_eq!("4964", part1);
-    assert_eq!("?", part2);
+    assert_eq!("1740", part2);
 }
