@@ -38,7 +38,6 @@ fn next_direction(dir: char) -> char {
 fn simulate_steps(input: &Vec<Vec<char>>) -> (HashSet<(usize, usize)>, bool) {
     let mut grid: Vec<Vec<char>> = input.clone();
     let mut visited_locs:HashSet<(usize, usize)> = HashSet::new();
-    let mut loc_dir_map:HashMap<(usize, usize), i32> = HashMap::new();
 
     let mut current_direction = '^';
     let mut current_idx = utils::find_first_index(&grid, current_direction);
@@ -48,20 +47,11 @@ fn simulate_steps(input: &Vec<Vec<char>>) -> (HashSet<(usize, usize)>, bool) {
     loop {
         let (x_next, y_next) = next_loc(current_direction, current_idx);
         visited_locs.insert(current_idx);
-        *loc_dir_map.entry(current_idx).or_insert(0) += 1;
 
-        // Problem is sneaky enough to have loops where you traverse all the same locations in a 
-        // different direction, before reaching them again. Hence a simple check for "Did I go in the 
-        // same direction last time I was here" is not good enough.
-        // Super lazy approach. If I see the same loc more than 4 times, I must be going in a direction
-        // I already did once, hence I'm in a loop.
-        // I should really figure out how to make nested collections. :D
-        if loc_dir_map[&current_idx] > 4 {
-            in_loop = true;
-            break;
+        // To speed things up, only set direction the first time we cross a path
+        if grid[current_idx.0][current_idx.1] == '.' {
+            grid[current_idx.0][current_idx.1] = current_direction;
         }
-
-        grid[current_idx.0][current_idx.1] = current_direction;
 
         match grid[x_next][y_next] {
             '!' => break,
@@ -112,13 +102,9 @@ pub fn part_two(input: &Vec<Vec<char>>) -> i32 {
 }
 
 pub fn execute(input: &str) -> (String, String) {
-    
     let parsed = parse_input(input);
 
     let part1 = part_one(&parsed);
-
-    println!("{:?}", part1);
-
     let part2 = part_two(&parsed);
 
     (part1.to_string(), part2.to_string())
