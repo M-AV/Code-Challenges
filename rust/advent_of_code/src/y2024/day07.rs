@@ -49,7 +49,7 @@ fn can_be_true(expected_result: &u64, numbers: &[u64], result: u64, with_concat:
         }
 
         // Probably quite slow, but easiest way I could think of to concat two numbers
-        let concat_result = (result.to_string() + &head.to_string()).parse::<u64>().unwrap();
+        let concat_result = format!("{}{}", result, head).parse().unwrap();
 
         let multiply_result = can_be_true(expected_result, tail, concat_result, with_concat);
 
