@@ -7,6 +7,8 @@ use std::slice::Iter;
 use itertools::Itertools;
 use recursive::recursive;
 
+use crate::utils;
+
 fn parse_input(input: &str) -> Vec<(u64, Vec<u64>)> {
     let parsed = input
         .lines()
@@ -48,8 +50,7 @@ fn can_be_true(expected_result: &u64, numbers: &[u64], result: u64, with_concat:
             return false;
         }
 
-        // Probably quite slow, but easiest way I could think of to concat two numbers
-        let concat_result = format!("{}{}", result, head).parse().unwrap();
+        let concat_result = utils::concat_numbers(result, *head);
 
         let multiply_result = can_be_true(expected_result, tail, concat_result, with_concat);
 

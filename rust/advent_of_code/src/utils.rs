@@ -50,3 +50,8 @@ pub fn find_first_index<T>(grid: &Vec<Vec<T>>, value: T) -> (usize, usize) where
     }
     current_idx
 }
+
+/// Concat two numbers as if they were strings. E.g. 12 & 21 becomes 1221.
+pub fn concat_numbers(left: u64, right: u64) -> u64 {
+    left * 10u64.pow(right.ilog10() + 1) + right
+}
