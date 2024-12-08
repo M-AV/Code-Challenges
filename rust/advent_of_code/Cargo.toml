@@ -9,3 +9,4 @@ reqwest = { version = "*", features = ["blocking", "cookies"] }
 itertools = "*"
 regex = "*"
 recursive = "*"
+colored = "*"
