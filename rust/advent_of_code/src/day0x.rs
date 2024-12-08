@@ -13,7 +13,7 @@ pub fn part_two(input: &str) -> i32 {
 pub fn execute(input: &str) -> (String, String) {
     println!("{:?}", input);
 
-    // let parsed: (Vec<i32>, Vec<i32>) = parse_input(input);
+    // let parsed = parse_input(input);
 
     let part1 = part_one(input);
     let part2 = part_two(input);
