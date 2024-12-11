@@ -68,3 +68,7 @@ pub fn find_first_index<T>(grid: &Vec<Vec<T>>, value: T) -> (usize, usize) where
 pub fn concat_numbers(left: u64, right: u64) -> u64 {
     left * 10u64.pow(right.ilog10() + 1) + right
 }
+
+pub fn int_length(value: i64) -> u32 {
+    value.checked_ilog10().unwrap_or(0)+1
+}
