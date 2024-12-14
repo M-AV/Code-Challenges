@@ -158,12 +158,12 @@ pub fn part_two(input: &Vec<Vec<char>>) -> i32 {
                 while let Some((outside, inside, dir)) = edge_lines.iter().next().cloned() {
                     edge_lines.remove(&(outside, inside, dir));
 
-                    let (mut i_outside, mut i_inside, mut i_dir) = (outside, inside, dir);
+                    let (mut i_outside, mut i_inside, i_dir) = (outside, inside, dir);
                     match dir {
                         '|' => {
                             while let Some(x) 
                                 = edge_lines.take(&((i_outside.0-1, i_outside.1),(i_inside.0-1, i_inside.1),'|')) {
-                                    (i_outside, i_inside, i_dir) = x;
+                                    (i_outside, i_inside, _) = x;
                                 }
 
                             (i_outside, i_inside, _) = (outside, inside, dir);

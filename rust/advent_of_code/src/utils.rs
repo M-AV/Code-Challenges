@@ -1,5 +1,7 @@
-use std::fmt::Display;
+use std::{fmt::Display, ops::{Div, Mul, Rem}, process::Output};
 use colored::Colorize;
+use recursive::recursive;
+
 
 pub fn print_2d_vec<T>(grid: &Vec<Vec<T>>) where T : Display {
     for i in 0 .. grid.len() {
@@ -71,4 +73,23 @@ pub fn concat_numbers(left: u64, right: u64) -> u64 {
 
 pub fn int_length(value: i64) -> u32 {
     value.checked_ilog10().unwrap_or(0)+1
+}
+
+/// Greatest common divisor
+#[recursive]
+pub fn gcd<T>(a: T, b: T) -> T
+where T: Copy + PartialEq + PartialOrd + From<u8> + Rem<Output = T> {
+    if a < b {
+        return gcd(b, a);
+    }
+    if b == T::from(0u8) {
+        return a;
+    }
+    gcd(b, a % b)
+}
+
+/// Least Common Multiple
+pub fn lcm<T>(a: T, b: T) -> T 
+where T : Copy + PartialEq + PartialOrd + Mul<Output = T> + Div<Output = T> + From<u8> + Rem<Output = T> {
+    a * (b / gcd(a, b))
 }
