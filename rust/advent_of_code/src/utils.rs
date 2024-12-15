@@ -1,4 +1,4 @@
-use std::{fmt::Display, ops::{Div, Mul, Rem}, process::Output};
+use std::{fmt::Display, ops::{Div, Mul, Rem}};
 use colored::Colorize;
 use recursive::recursive;
 
@@ -19,6 +19,21 @@ pub fn print_2d_vec_with_highlight<T>(grid: &Vec<Vec<T>>, highlight: &Vec<(usize
                 print!("{} ", grid[i][j].to_string().red());
             } else {
                 print!("{} ", grid[i][j]);
+            }
+        }
+        println!("");
+    }
+}
+
+pub fn print_2d_vec_with_callback<T, F>(grid: &Vec<Vec<T>>, mut callback: F) 
+    where T : Display, F: FnMut(&T, (usize, usize)) -> Option<T>
+{
+    for i in 0 .. grid.len() {
+        for j in 0 .. grid[0].len() {
+            let item = &grid[i][j];
+            match callback(&item, (j, i)) {
+                Some(value) => print!("{} ", value),
+                None => print!("{} ", item),
             }
         }
         println!("");
