@@ -3,22 +3,27 @@ use colored::Colorize;
 use recursive::recursive;
 
 
-pub fn print_2d_vec<T>(grid: &Vec<Vec<T>>) where T : Display {
+pub fn print_2d_vec<T>(grid: &Vec<Vec<T>>, with_space: bool) where T : Display {
     for i in 0 .. grid.len() {
         for j in 0 .. grid[0].len() {
-            print!("{} ", grid[i][j])
+            if with_space {
+                print!("{} ", grid[i][j])
+            } else {
+                print!("{}", grid[i][j])
+            }
+            
         }
         println!("");
     }
 }
 
-pub fn print_2d_vec_with_highlight<T>(grid: &Vec<Vec<T>>, highlight: &Vec<(usize, usize)>) where T : Display {
+pub fn print_2d_vec_with_highlight<T>(grid: &Vec<Vec<T>>, highlight: &[(usize, usize)]) where T : Display {
     for i in 0 .. grid.len() {
         for j in 0 .. grid[0].len() {
             if highlight.contains(&(i, j)) {
-                print!("{} ", grid[i][j].to_string().red());
+                print!("{}", grid[i][j].to_string().red());
             } else {
-                print!("{} ", grid[i][j]);
+                print!("{}", grid[i][j]);
             }
         }
         println!("");

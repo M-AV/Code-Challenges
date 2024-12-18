@@ -46,7 +46,7 @@ async fn main() {
     // return;
 
     let year = 2024;
-    let day =  15;
+    let day =  16;
 
     println!("## Puzzle {}/12-{}", year, day);
 
