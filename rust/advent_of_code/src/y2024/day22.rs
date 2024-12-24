@@ -41,7 +41,6 @@ pub fn part_one(input: &Vec<i64>) -> i64 {
 }
 
 pub fn part_two(input: &Vec<i64>) -> i64 {
-
     let mut all_prices_diffs = vec![];
     for buyer in input {
         let mut prices = vec![];
@@ -62,6 +61,8 @@ pub fn part_two(input: &Vec<i64>) -> i64 {
     }
 
 
+    // Made an assumption that I would trade with the first buyer and brute forced all
+    // options for that one. What do you know? it worked (for my input at least)
     let mut max_bananas = 0;
     for sequence in all_prices_diffs[0].1.windows(4) {
         let mut bananas = 0;
